@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="PatChoosePane" prefHeight="400.0" prefWidth="600.0" stylesheets="@MainLoginStyle.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.patOptionController">
+   <children>
+      <Button layoutX="61.0" layoutY="286.0" mnemonicParsing="false" onMouseClicked="#toPatInfo" text="基本信息">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font></Button>
+      <Button layoutX="187.0" layoutY="237.0" mnemonicParsing="false" onMouseClicked="#toPatAppoinment" text="预约挂号">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font></Button>
+      <Button layoutX="458.0" layoutY="239.0" mnemonicParsing="false" onMouseClicked="#toPatRecharge" text="  充  值  ">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font></Button>
+      <Button layoutX="320.0" layoutY="286.0" mnemonicParsing="false" onMouseClicked="#toPatDetailInfo" text="明细查询">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font></Button>
+      <ImageView fitHeight="135.0" fitWidth="142.0" layoutX="431.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/deposit.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="124.0" fitWidth="116.0" layoutX="167.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/patRegisteredIcon.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="134.0" fitWidth="116.0" layoutX="41.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/patBasicalInfoIcon.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="139.0" fitWidth="135.0" layoutX="290.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/info.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="525.0" layoutY="373.0" mnemonicParsing="false" onMouseClicked="#patLogout" text="注销账号">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
