@@ -24,8 +24,8 @@ public class AliyunConfig {
     private static final String domain = "dysmsapi.aliyuncs.com";
 
     /* 此处需要替换成开发者自己的accessKeyId和accessKeySecret(在阿里云访问控制台寻找) */
-    private static final String accessKeyId = "你的accessKeyId"; //TODO: 这里要写成你自己生成的
-    private static final String accessKeySecret = "你的accessKeySecret";//TODO: 这里要写成你自己生成的
+    private static final String accessKeyId = "LTAI4G6Yv9TBUjSYx5JMt3jz"; //TODO: 这里要写成你自己生成的
+    private static final String accessKeySecret = "OLVQMaqWrq1h6NVEvCkBIMf5M5QhFh";//TODO: 这里要写成你自己生成的
 
     /* 短信发送 */
     public static SendSmsResponse sendSms(String phone) throws ClientException {
@@ -44,9 +44,9 @@ public class AliyunConfig {
         /* 必填:待发送手机号 */
         request.setPhoneNumbers(phone);
         /* 必填:短信签名-可在短信控制台中找到 */
-        request.setSignName("提前看"); //TODO: 这里是你短信签名
+        request.setSignName("CSUDazz宠物商店"); //TODO: 这里是你短信签名
         /* 必填:短信模板code-可在短信控制台中找到 */
-        request.setTemplateCode("你的模板code"); //TODO: 这里是你的模板code
+        request.setTemplateCode("SMS_187271386"); //TODO: 这里是你的模板code
         /* 可选:模板中的变量替换JSON串,如模板内容为"亲爱的用户,您的验证码为${code}"时,此处的值为 */
         request.setTemplateParam("{\"code\":\"" + getMsgCode() + "\"}");
 

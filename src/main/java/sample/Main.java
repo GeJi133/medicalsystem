@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import utils.AliyunConfig;
 
 public class Main extends Application {
 
@@ -21,6 +22,10 @@ public class Main extends Application {
                 getClass().getResource("/ui/MainDocStyle.css").toExternalForm());
         primaryStage.setTitle("医疗管理系统");
         primaryStage.show();
+
+//        AliyunConfig.sendSms ("18956778818");
+
+
     }
 
 
