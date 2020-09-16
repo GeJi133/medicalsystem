@@ -14,6 +14,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import utils.AlipayConfigUtil;
+import utils.HttpTest;
+
+import java.io.IOException;
 
 public class patRechargeController {
     @FXML private TextField cardRemain;
@@ -67,14 +71,34 @@ public class patRechargeController {
 
     }
     //选择充值方式
-    public void MethodChose(ActionEvent actionEvent) {
+    public void MethodChose(ActionEvent actionEvent) throws IOException {
         String method = (String) payMethod.getValue();
         Image img;
-        if (method.equals("微信")) {
-            img = new Image("image/WeChat.png");
-        }
-        else if(method.equals("支付宝")){
+//        if (method.equals("微信")) {
+//            img = new Image("image/WeChat.png");
+//
+//
+//        }
+        if(method.equals("支付宝")){
+            //支付宝支付
+
             img = new Image("image/AliPay.png");
+            int success=HttpTest.waitForResponse ();
+            if(success==1){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("成功");
+                alert.setHeaderText("充值成功！");
+                alert.setContentText("您已充值成功，目前卡内余额为："+ (PatientInfoDao.patInfo.getPatDeposit() + Double.parseDouble(amount.getText())));
+                alert.show();
+            }
+            if(success==1){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("失败");
+                alert.setHeaderText("充值失败，请稍后重试！");
+                alert.setContentText("您已充值成功，目前卡内余额为："+ (PatientInfoDao.patInfo.getPatDeposit() + Double.parseDouble(amount.getText())));
+                alert.show();
+
+            }
         }
         else {
             img = new Image("image/empty.png");
