@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="950" prefWidth="1500" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.patController">
+   <children>
+      <ImageView fitHeight="950.0" fitWidth="1500.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/patBackground.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="289.0" fitWidth="211.0" layoutX="142.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/patient.png" />
+         </image></ImageView>
+      <Label layoutX="455.0" layoutY="219.0" text="姓名">
+         <font>
+            <Font name="Calibri" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="455.0" layoutY="385.0" text="年龄">
+         <font>
+            <Font name="Calibri" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="904.0" layoutY="385.0" text="性别">
+         <font>
+            <Font name="Calibri" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="880.0" layoutY="552.0" text="联系方式">
+         <font>
+            <Font name="Calibri" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="904.0" layoutY="219.0" text="卡号">
+         <font>
+            <Font name="Calibri" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="431.0" layoutY="552.0" text="卡内余额">
+         <font>
+            <Font name="Calibri" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="431.0" layoutY="711.0" text="办卡日期">
+         <font>
+            <Font name="Calibri" size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="patName" editable="false" layoutX="540.0" layoutY="211.0">
+         <font>
+            <Font name="Calibri" size="24.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="patAge" editable="false" layoutX="540.0" layoutY="377.0">
+         <font>
+            <Font name="Calibri" size="24.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="patDeposit" editable="false" layoutX="540.0" layoutY="544.0">
+         <font>
+            <Font name="Calibri" size="24.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="patDate" editable="false" layoutX="540.0" layoutY="703.0">
+         <font>
+            <Font name="Calibri" size="24.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="patId" editable="false" layoutX="991.0" layoutY="211.0">
+         <font>
+            <Font name="Calibri" size="24.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="patGender" editable="false" layoutX="991.0" layoutY="377.0">
+         <font>
+            <Font name="Calibri" size="24.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="patTel" editable="false" layoutX="991.0" layoutY="544.0">
+         <font>
+            <Font name="Calibri" size="24.0" />
+         </font>
+      </TextField>
+      <Label layoutX="750.0" layoutY="80.0" text="患者个人信息">
+         <font>
+            <Font name="Calibri" size="36.0" />
+         </font>
+      </Label>
+      <Button layoutX="1176.0" layoutY="78.0" mnemonicParsing="false" onMouseClicked="#infoRet" prefHeight="44.0" prefWidth="232.0" text="返回">
+         <font>
+            <Font name="Calibri" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="changeInfo" layoutX="883.0" layoutY="703.0" mnemonicParsing="false" onMouseClicked="#patChangeInfo" prefHeight="44.0" prefWidth="216.0" text="修改个人信息">
+         <font>
+            <Font name="Calibri" size="24.0" />
+         </font>
+      </Button>
+      <Label fx:id="enterNewPassword" layoutX="407.0" layoutY="844.0" text="输入新密码">
+         <font>
+            <Font name="Calibri" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="confirmNewPassword" layoutX="880.0" layoutY="844.0" text="确认密码">
+         <font>
+            <Font name="Calibri" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="ConfirmChange" layoutX="1135.0" layoutY="703.0" mnemonicParsing="false" onMouseClicked="#patConfirm" prefHeight="44.0" prefWidth="141.0" text="确认修改">
+         <font>
+            <Font name="Calibri" size="24.0" />
+         </font>
+      </Button>
+      <PasswordField fx:id="newPassword" layoutX="540.0" layoutY="836.0" prefHeight="44.0" prefWidth="285.0">
+         <font>
+            <Font name="Calibri" size="24.0" />
+         </font></PasswordField>
+      <PasswordField fx:id="conNewPassword" layoutX="993.0" layoutY="836.0" prefHeight="44.0" prefWidth="285.0">
+         <font>
+            <Font name="Calibri" size="24.0" />
+         </font>
+      </PasswordField>
+   </children>
+</AnchorPane>

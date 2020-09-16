@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@MainLoginStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminLoginByPhoneController">
+    <children>
+        <Pane fx:id="admitPane" prefHeight="400.0" prefWidth="600.0">
+
+            <children>
+                <Button layoutX="336.0" layoutY="326.0" mnemonicParsing="false" onAction="#returnToMain" opacity="0.8" prefHeight="23.0" prefWidth="123.0" text="返回" />
+                <Label layoutX="239.0" layoutY="169.0" text="管理员登录">
+                    <font>
+                        <Font size="25.0" />
+                    </font></Label>
+                <Label layoutX="87.0" layoutY="275.0" text="验证码：">
+                    <font>
+                        <Font name="Calibri" size="14.0" />
+                    </font></Label>
+                <Label layoutX="86.0" layoutY="224.0" text="手机号：">
+                    <font>
+                        <Font size="14.0" />
+                    </font></Label>
+                <TextField fx:id="phonenumber" layoutX="175.0" layoutY="219.0" opacity="0.7" prefHeight="30.0" prefWidth="269.0" promptText="请输入手机号" />
+                <Button fx:id="adminLogin" layoutX="127.0" layoutY="327.0" mnemonicParsing="false" onMouseClicked="#adminLogin" opacity="0.8" prefHeight="23.0" prefWidth="123.0" text="登       录" />
+                <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="222.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../image/admitimg.png" />
+                    </image></ImageView>
+            <TextField fx:id="vcode" layoutX="175.0" layoutY="269.0" />
+            <Button layoutX="397.0" layoutY="270.0" mnemonicParsing="false" onMouseClicked="#sendSms" text="发送验证码" />
+            </children></Pane>
+    </children>
+</AnchorPane>
