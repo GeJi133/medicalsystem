@@ -11,6 +11,15 @@ public class Doctorinfo {
     private String docTel;
     private String onDuty;
     private String offDuty;
+    private String phonenumber;
+
+    public String getPhonenumber() {
+        return phonenumber;
+    }
+
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
+    }
 
     public Doctorinfo(){}
     public Doctorinfo(int id,String docName,String docGender,int docAge,String docPwd,String docDepartment,String docRank,String docTel,String onDuty,String offDuty){

@@ -9,6 +9,15 @@ public class PatientInfo {
     private float patDeposit;
     private String patDate;
     private String patTel;
+    private String phonenumber;
+
+    public String getPhonenumber() {
+        return phonenumber;
+    }
+
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
+    }
 
     public PatientInfo(){}
 

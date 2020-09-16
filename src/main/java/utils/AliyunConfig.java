@@ -28,7 +28,7 @@ public class AliyunConfig {
     private static final String accessKeySecret = "OLVQMaqWrq1h6NVEvCkBIMf5M5QhFh";//TODO: 这里要写成你自己生成的
 
     /* 短信发送 */
-    public static SendSmsResponse sendSms(String phone) throws ClientException {
+    public static String sendSms(String phone) throws ClientException {
 
         /* 超时时间，可自主调整 */
         System.setProperty("sun.net.client.defaultConnectTimeout", "10000");
@@ -48,17 +48,19 @@ public class AliyunConfig {
         /* 必填:短信模板code-可在短信控制台中找到 */
         request.setTemplateCode("SMS_187271386"); //TODO: 这里是你的模板code
         /* 可选:模板中的变量替换JSON串,如模板内容为"亲爱的用户,您的验证码为${code}"时,此处的值为 */
-        request.setTemplateParam("{\"code\":\"" + getMsgCode() + "\"}");
+        String msgCode=getMsgCode ();
+        request.setTemplateParam("{\"code\":\"" + msgCode + "\"}");
 
         // hint 此处可能会抛出异常，注意catch
         SendSmsResponse sendSmsResponse = acsClient.getAcsResponse(request);
+        System.out.println (sendSmsResponse);
         if(sendSmsResponse.getCode()!= null && sendSmsResponse.getCode().equals("OK")){
-            System.out.println("短信发送成功！验证码：" + getMsgCode());
+            System.out.println("短信发送成功！验证码：" + msgCode);
         }
         else {
             System.out.println("短信发送失败！");
         }
-        return sendSmsResponse;
+        return msgCode;
 
     }
 

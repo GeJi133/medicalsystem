@@ -141,6 +141,30 @@ public class PatientInfoDao {
     //合并内容
 
     public static PatientInfo patInfo = new PatientInfo();
+
+
+    public int patLoginByPhone(String strPhone) {
+        int count = 0;
+        Connection conn = BaseDao.getconn();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            String query = "select * from patientInfo where phonenumber = ?";
+            ps = conn.prepareStatement(query);
+            ps.setString (1,strPhone);
+            rs = ps.executeQuery();
+            while(rs.next())
+                count += 1;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            BaseDao.closeAll(conn,ps,rs);
+        }
+        return count;
+    }
+
     //患者登录确认
     public int patLogin(PatientInfo patientinfo){
         int count = 0;
@@ -154,7 +178,7 @@ public class PatientInfoDao {
             ps.setString(2,patientinfo.getPatPwd());
             rs = ps.executeQuery();
             while(rs.next())
-                count = 1;
+                count += 1;
         }
         catch (Exception e){
             e.printStackTrace();
@@ -220,6 +244,33 @@ public class PatientInfoDao {
             rs = ps.executeQuery();
             rs.next();
             patientinfo.setPatId(patId);
+            patientinfo.setPatName(rs.getString("patName"));
+            patientinfo.setPatGender(rs.getString("patGender"));
+            patientinfo.setPatAge(rs.getInt("patAge"));
+            patientinfo.setPatDeposit(rs.getFloat("patDeposit"));
+            patientinfo.setPatDate(rs.getString("patDate"));
+            patientinfo.setPatTel(rs.getString("patTel"));
+            patientinfo.setPatPwd(rs.getString("patPwd"));
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return patientinfo;
+    }
+
+    //通过手机号获取患者信息
+    public PatientInfo selectPatInfoByPhone(String phonenumber){
+        Connection conn = BaseDao.getconn();
+        PatientInfo patientinfo =  new PatientInfo();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try{
+            String query = "select * from patientInfo where phonenumber = ?";
+            ps = conn.prepareStatement(query);
+            ps.setString (1,phonenumber);
+            rs = ps.executeQuery();
+            rs.next();
+            patientinfo.setPhonenumber (phonenumber);
+            patientinfo.setPatId(rs.getInt ("patId"));
             patientinfo.setPatName(rs.getString("patName"));
             patientinfo.setPatGender(rs.getString("patGender"));
             patientinfo.setPatAge(rs.getInt("patAge"));
@@ -488,4 +539,5 @@ public class PatientInfoDao {
             BaseDao.closeAll(conn,ps,null);
         }
     }
+
 }

@@ -1,56 +1,58 @@
 package controller;
 
+import com.aliyuncs.exceptions.ClientException;
 import dao.PatientInfoDao;
 import entity.PatientInfo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.SortEvent;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import utils.AliyunConfig;
 
-import java.net.URL;
+public class patLoginByPhoneController {
 
-public class patLoginController {
-    @FXML private TextField patId;
-    @FXML private PasswordField patPassword;
+    @FXML
+    private TextField phonenumber;
+    @FXML
+    private TextField vcode;
+    private String smsCode;
+
+
     //注册成功初始化函数
     public void Init(){
-        patId.setText(String.valueOf(PatientInfoDao.patInfo.getPatId()));
+        phonenumber.setText(String.valueOf(PatientInfoDao.patInfo.getPatId()));
     }
     //登录响应函数
     @FXML
     public void patLogin(MouseEvent mouseEvent) {
-        String strPatId = patId.getText();
-        String strPatPwd = patPassword.getText();
+        String strPhone = phonenumber.getText();
+        String strVcode = vcode.getText();
         PatientInfo patientinfo = new PatientInfo();
-        if(strPatId.isEmpty() || strPatPwd.isEmpty())
+        if(strPhone.isEmpty() || strVcode.isEmpty())
         {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText("警告");
-            alert.setContentText("用户名和密码均不能为空！");
+            alert.setContentText("手机号和验证码不能为空！");
             alert.show();
         }
         else {
-            patientinfo.setPatId(Integer.parseInt(strPatId));
-            patientinfo.setPatPwd(strPatPwd);
-            PatientInfoDao patientdao = new PatientInfoDao();
-            int count = patientdao.patLogin(patientinfo);
-            if(count > 0){
+            if(strVcode.equals (smsCode))
+            {
+                System.out.println ("验证码正确");
                 try{
                     PatientInfoDao init = new PatientInfoDao();
-                    PatientInfoDao.patInfo = init.selectPatInfo(Integer.parseInt(strPatId));
+                    PatientInfoDao.patInfo = init.selectPatInfoByPhone (strPhone);
                     Stage patStage = new Stage();
                     Parent root = FXMLLoader.load(getClass().getResource("/ui/patOptionFXML.fxml"));
                     patStage.setTitle("患者选择界面");
-                    patStage.setScene(new Scene(root, 600, 400));
+                    patStage.setScene(new Scene (root, 600, 400));
                     patStage.show();
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setHeaderText("成功");
@@ -63,10 +65,11 @@ public class patLoginController {
                 }
             }
             else {
+                System.out.println ("验证码"+vcode+"发送验证码"+smsCode);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText("用户名或密码不正确，请重新输入");
                 alert.show();
-                patPassword.clear();
+                vcode.clear();
             }
         }
     }
@@ -136,5 +139,27 @@ public class patLoginController {
 //        SortEvent<Object> mouseEvent;
         ((Node) (mouseEvent.getSource())).getScene().getWindow().hide();
 
+    }
+
+    public void sendSms(MouseEvent mouseEvent) throws ClientException {
+        String strPhone=phonenumber.getText ();
+
+        PatientInfoDao patientdao = new PatientInfoDao();
+        System.out.println ("手机号"+strPhone);
+        int count = patientdao.patLoginByPhone (strPhone);
+        if(count <= 0){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("手机号不存在");
+            alert.show();
+            vcode.clear();
+
+        }
+        else {
+            smsCode = AliyunConfig.sendSms (strPhone);
+            Alert alert = new Alert (Alert.AlertType.INFORMATION);
+            alert.setHeaderText ("验证码发送成功");
+            alert.show ();
+            vcode.clear ();
+        }
     }
 }

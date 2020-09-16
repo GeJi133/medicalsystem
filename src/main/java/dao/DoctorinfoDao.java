@@ -7,6 +7,63 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class DoctorinfoDao {
+    public Doctorinfo selectDoctorInfoByPhone(String phonenumber){
+        Connection conn=BaseDao.getconn();
+        PreparedStatement ps=null;
+        ResultSet rs=null;
+        Doctorinfo doctorinfo=new Doctorinfo ();
+        try {
+            String sql="select * from doctorinfo where phonenumber=?";
+            ps=conn.prepareStatement(sql);
+            ps.setString(1,phonenumber);
+            rs=ps.executeQuery();
+            doctorinfo.setPhonenumber (phonenumber);
+            doctorinfo.setDocName(rs.getString(2));
+            doctorinfo.setDocAge(rs.getInt(4));
+            doctorinfo.setDocDepartment(rs.getString(6));
+            doctorinfo.setDocGender(rs.getString(3));
+            doctorinfo.setDocRank(rs.getString(7));
+            doctorinfo.setDocTel(rs.getString(8));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            BaseDao.closeAll(conn,ps,rs);
+        }
+        return doctorinfo;
+    }
+
+
+    public int selectDoctorByPhone(String phonenumber){
+        int count=0;
+        Connection conn=BaseDao.getconn();
+        PreparedStatement ps=null;
+        ResultSet rs=null;
+        Doctorinfo doctorinfo=new Doctorinfo ();
+        try {
+            String sql="select * from doctorinfo where phonenumber=?";
+            ps=conn.prepareStatement(sql);
+            ps.setString(1,phonenumber);
+            rs=ps.executeQuery();
+            if (rs.next())
+                count=1;
+            doctorinfo.setPhonenumber (phonenumber);
+            doctorinfo.setDocName(rs.getString(2));
+            doctorinfo.setDocAge(rs.getInt(4));
+            doctorinfo.setDocDepartment(rs.getString(6));
+            doctorinfo.setDocGender(rs.getString(3));
+            doctorinfo.setDocRank(rs.getString(7));
+            doctorinfo.setDocTel(rs.getString(8));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            BaseDao.closeAll(conn,ps,rs);
+        }
+        return count;
+    }
 
     public int selectDoctor(Doctorinfo doctorinfo){
         int count=0;

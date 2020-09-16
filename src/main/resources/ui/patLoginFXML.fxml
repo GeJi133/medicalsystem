@@ -47,6 +47,6 @@
          </image>
       </ImageView>
       <Hyperlink layoutX="487.0" layoutY="358.0" onMouseClicked="#toPatRegister" text="注册新用户" />
-      <Hyperlink fx:id="loginByPhone" layoutX="481.0" layoutY="306.0" onMouseClicked="#toPatRegister" text="手机号登陆" />
+      <Hyperlink fx:id="loginByPhone" layoutX="481.0" layoutY="306.0" onAction="#loginByPhone" onMouseClicked="#toPatLoginByPhone" text="手机号登陆" />
    </children>
 </AnchorPane>
