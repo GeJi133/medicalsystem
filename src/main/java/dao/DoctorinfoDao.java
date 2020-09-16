@@ -17,13 +17,16 @@ public class DoctorinfoDao {
             ps=conn.prepareStatement(sql);
             ps.setString(1,phonenumber);
             rs=ps.executeQuery();
-            doctorinfo.setPhonenumber (phonenumber);
-            doctorinfo.setDocName(rs.getString(2));
-            doctorinfo.setDocAge(rs.getInt(4));
-            doctorinfo.setDocDepartment(rs.getString(6));
-            doctorinfo.setDocGender(rs.getString(3));
-            doctorinfo.setDocRank(rs.getString(7));
-            doctorinfo.setDocTel(rs.getString(8));
+            while(rs.next ()) {
+                doctorinfo.setPhonenumber (phonenumber);
+                doctorinfo.setDocId (rs.getInt (1));
+                doctorinfo.setDocName (rs.getString (2));
+                doctorinfo.setDocAge (rs.getInt (4));
+                doctorinfo.setDocDepartment (rs.getString (6));
+                doctorinfo.setDocGender (rs.getString (3));
+                doctorinfo.setDocRank (rs.getString (7));
+                doctorinfo.setDocTel (rs.getString (8));
+            }
         }
         catch (Exception e){
             e.printStackTrace();

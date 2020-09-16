@@ -12,9 +12,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -87,5 +89,14 @@ public class adminLoginController {
     }
 
 
+    public void loginByPhone(MouseEvent mouseEvent) throws IOException {
+
+        Stage adminLoginStage=new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/ui/AdminLoginByPhone.fxml"));
+        adminLoginStage.setTitle("管理员登录");
+        adminLoginStage.setScene(new Scene(root, 600, 400));
+        adminLoginStage.show();
+        ((Node) (mouseEvent.getSource())).getScene().getWindow().hide();
+    }
 }
 

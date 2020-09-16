@@ -35,7 +35,7 @@ public class DoctorLoginByPhoneController {
     }
     //登录响应函数
     @FXML
-    public void patLogin(MouseEvent mouseEvent) {
+    public void doctorLogin(MouseEvent mouseEvent) {
         String strPhone = phonenumber.getText();
         String strVcode = vcode.getText();
         Doctorinfo doctorinfo = new Doctorinfo ();
@@ -91,20 +91,7 @@ public class DoctorLoginByPhoneController {
         ((Node) (actionEvent.getSource())).getScene().getWindow().hide();
     }
 
-    public void toPatLoginByPhone(MouseEvent mouseEvent) {
-        try {
-            Stage adminLoginStage=new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("/ui/PatLoginByPhone.fxml"));
-            adminLoginStage.setTitle("患者登录");
-            adminLoginStage.setScene(new Scene(root, 600, 400));
-            adminLoginStage.show();
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-//        SortEvent<Object> mouseEvent;
-        ((Node) (mouseEvent.getSource())).getScene().getWindow().hide();
 
-    }
 
     public void sendSms(MouseEvent mouseEvent) throws ClientException {
         String strPhone=phonenumber.getText ();

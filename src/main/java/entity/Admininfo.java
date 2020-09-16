@@ -3,8 +3,17 @@ package entity;
 public class Admininfo {
     private int adminAccount;
     private String adminPassword;
+    private String phonenumber;
 
-    public Admininfo(int adminAccount,String adminPassword){
+    public String getPhonenumber() {
+        return phonenumber;
+    }
+
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
+    }
+
+    public Admininfo(int adminAccount, String adminPassword){
         this.adminAccount=adminAccount;
         this.adminPassword=adminPassword;
     }

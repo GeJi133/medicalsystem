@@ -1,6 +1,7 @@
 package dao;
 
 import entity.Admininfo;
+import entity.Doctorinfo;
 import entity.DrugSales;
 import entity.depDiagnosisNumber;
 
@@ -13,6 +14,59 @@ import java.util.List;
 
 public class AdminInfoDao {
 
+    public int adminLoginByPhone(String phonenumber) {
+
+        Connection conn=BaseDao.getconn();
+        PreparedStatement ps=null;
+        ResultSet rs=null;
+        int count=0;
+
+        try {
+            String sql="select * from admininfo where phonenumber=?";
+            ps=conn.prepareStatement(sql);
+            ps.setString(1,phonenumber);
+            rs=ps.executeQuery();
+            if(rs.next ()) {
+                count=1;
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            BaseDao.closeAll(conn,ps,rs);
+        }
+
+        return count;
+    }
+
+    public Admininfo getAdminInfo(String phonenumber){
+        Admininfo admininfo=new Admininfo ();
+
+        Connection conn=BaseDao.getconn();
+        PreparedStatement ps=null;
+        ResultSet rs=null;
+
+        try {
+            String sql="select * from admininfo where phonenumber=?";
+            ps=conn.prepareStatement(sql);
+            ps.setString(1,phonenumber);
+            rs=ps.executeQuery();
+            while(rs.next ()) {
+                admininfo.setPhonenumber (phonenumber);
+                admininfo.setAdminAccount (rs.getInt (1));
+                admininfo.setAdminPassword (rs.getString (2));
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            BaseDao.closeAll(conn,ps,rs);
+        }
+
+        return admininfo;
+    }
     public int AdminLogin(Admininfo admin){
         int count = 0;
         Connection conn = BaseDao.getconn();
@@ -240,4 +294,6 @@ public class AdminInfoDao {
         }
         return null;
     }
+
+
 }

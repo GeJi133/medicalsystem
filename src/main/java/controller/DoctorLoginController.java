@@ -12,7 +12,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import sample.Main;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,6 +30,27 @@ public class DoctorLoginController {
 
     public static Doctorinfo getDoctorinfo(){
         return doctorinfo;
+    }
+    public void toDoctorLoginByPhone(MouseEvent mouseEvent) {
+        try {
+            Stage docLoginStage=new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/ui/DoctorLoginByPhone.fxml"));
+            docLoginStage.setTitle("医生管理系统");
+            docLoginStage.setScene(new Scene(root, 600, 400));
+            docLoginStage.show();
+//            new Main ().close(actionEvent);
+//
+//            Stage adminLoginStage=new Stage();
+//            Parent root = FXMLLoader.load(getClass().getResource("/ui/PatLoginByPhone.fxml"));
+//            adminLoginStage.setTitle("患者登录");
+//            adminLoginStage.setScene(new Scene(root, 600, 400));
+//            adminLoginStage.show();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+//        SortEvent<Object> mouseEvent;
+        ((Node) (mouseEvent.getSource())).getScene().getWindow().hide();
+
     }
     public void doctorLogin(ActionEvent event){
 
