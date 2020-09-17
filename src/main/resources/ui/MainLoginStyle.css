@@ -1,5 +1,5 @@
 #MainLogPane {
-    -fx-background-image: url("/image/MainLoginBackground.jpg");
+    -fx-background-image: url("/image/MainLoginBackground.PNG");
 }
 .button{
     -fx-text-fill: white;
