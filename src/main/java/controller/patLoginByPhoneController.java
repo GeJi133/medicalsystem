@@ -52,7 +52,7 @@ public class patLoginByPhoneController {
                     Stage patStage = new Stage();
                     Parent root = FXMLLoader.load(getClass().getResource("/ui/patOptionFXML.fxml"));
                     patStage.setTitle("患者选择界面");
-                    patStage.setScene(new Scene (root, 600, 400));
+                    patStage.setScene(new Scene (root, 1080, 720));
                     patStage.show();
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setHeaderText("成功");
@@ -80,7 +80,7 @@ public class patLoginByPhoneController {
             Stage patStage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("/ui/patRegisterFXML.fxml"));
             patStage.setTitle("患者选择界面");
-            patStage.setScene(new Scene(root, 600, 400));
+            patStage.setScene(new Scene(root, 1080, 720));
             patStage.show();
         } catch (Exception e){
             e.printStackTrace();
@@ -114,7 +114,7 @@ public class patLoginByPhoneController {
             Stage patStage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("/ui/MainLoginFXML.fxml"));
             patStage.setTitle("欢迎使用医疗管理信息系统！");
-            patStage.setScene(new Scene(root, 900, 550));
+            patStage.setScene(new Scene(root, 1080, 720));
             patStage.show();
         } catch (Exception e){
             e.printStackTrace();
@@ -131,7 +131,7 @@ public class patLoginByPhoneController {
             Stage adminLoginStage=new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("/ui/PatLoginByPhone.fxml"));
             adminLoginStage.setTitle("患者登录");
-            adminLoginStage.setScene(new Scene(root, 600, 400));
+            adminLoginStage.setScene(new Scene(root, 1080, 720));
             adminLoginStage.show();
         } catch (Exception e){
             e.printStackTrace();

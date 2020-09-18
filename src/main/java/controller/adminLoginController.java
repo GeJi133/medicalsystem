@@ -46,7 +46,7 @@ public class adminLoginController {
                 fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
                 Parent root = fxmlLoader.load();
                 patStage.setTitle("医疗管理系统");
-                Scene scene = new Scene(root, 1500, 950);
+                Scene scene = new Scene(root, 1080, 720);
                 patStage.setScene(scene);
                 adminManageController controller = fxmlLoader.getController();   //获取Controller的实例对象
 
@@ -78,7 +78,7 @@ public class adminLoginController {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/ui/MainLoginFXML.fxml"));
             adminManage.setTitle("医疗管理系统");
-            adminManage.setScene(new Scene(root, 900, 550));
+            adminManage.setScene(new Scene(root, 1080, 720));
             adminManage.show();
             ((Node) (actionEvent.getSource())).getScene().getWindow().hide();
         }
@@ -94,7 +94,7 @@ public class adminLoginController {
         Stage adminLoginStage=new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/ui/AdminLoginByPhone.fxml"));
         adminLoginStage.setTitle("管理员登录");
-        adminLoginStage.setScene(new Scene(root, 600, 400));
+        adminLoginStage.setScene(new Scene(root, 1080, 720));
         adminLoginStage.show();
         ((Node) (mouseEvent.getSource())).getScene().getWindow().hide();
     }

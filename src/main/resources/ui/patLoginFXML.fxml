@@ -15,38 +15,38 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="patLogPat" prefHeight="400.0" prefWidth="600.0" stylesheets="@MainLoginStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.patLoginController">
+<AnchorPane fx:id="patLogPat" prefHeight="720.0" prefWidth="1080.0" stylesheets="@MainLoginStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.patLoginController">
    <children>
-      <Button layoutX="145.0" layoutY="306.0" mnemonicParsing="false" onMouseClicked="#patLogin" prefHeight="23.0" prefWidth="123.0" text="登录">
+      <Button layoutX="363.0" layoutY="502.0" mnemonicParsing="false" onMouseClicked="#patLogin" prefHeight="35.0" prefWidth="99.0" text="登录">
          <font>
             <Font name="Calibri" size="14.0" />
          </font></Button>
-      <Label fx:id="card" layoutX="116.0" layoutY="210.0" text="卡   号：">
+      <Label fx:id="card" layoutX="361.0" layoutY="377.0" text="卡   号：">
          <font>
             <Font name="Calibri" size="14.0" />
          </font></Label>
-      <Label layoutX="116.0" layoutY="259.0" text="密   码：">
+      <Label layoutX="362.0" layoutY="429.0" text="密   码：">
          <font>
             <Font name="Calibri" size="14.0" />
          </font></Label>
-      <TextField id="patId" fx:id="patId" layoutX="168.0" layoutY="207.0" prefHeight="23.0" prefWidth="291.0" />
-      <PasswordField id="patPassword" fx:id="patPassword" layoutX="168.0" layoutY="256.0" prefHeight="23.0" prefWidth="291.0" />
+      <TextField id="patId" fx:id="patId" layoutX="425.0" layoutY="371.0" prefHeight="23.0" prefWidth="291.0" />
+      <PasswordField id="patPassword" fx:id="patPassword" layoutX="425.0" layoutY="423.0" prefHeight="23.0" prefWidth="291.0" />
       <Label layoutX="419.0" layoutY="297.0" />
-      <Button layoutX="324.0" layoutY="306.0" mnemonicParsing="false" onMouseClicked="#patLoginRet" prefHeight="23.0" prefWidth="123.0" text="返回">
+      <Button layoutX="572.0" layoutY="502.0" mnemonicParsing="false" onMouseClicked="#patLoginRet" prefHeight="35.0" prefWidth="99.0" text="返回">
          <font>
             <Font name="Calibri" size="14.0" />
          </font></Button>
-      <Label layoutX="256.0" layoutY="156.0" text="患者登录">
+      <Label layoutX="490.0" layoutY="309.0" text="患者登录">
          <font>
             <Font name="Calibri" size="25.0" />
          </font>
       </Label>
-      <ImageView fx:id="image" fitHeight="120.0" fitWidth="120.0" layoutX="246.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="259.0">
+      <ImageView fx:id="image" fitHeight="158.0" fitWidth="158.0" layoutX="461.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/patient.png" />
          </image>
       </ImageView>
-      <Hyperlink layoutX="487.0" layoutY="358.0" onMouseClicked="#toPatRegister" text="注册新用户" />
-      <Hyperlink fx:id="loginByPhone" layoutX="481.0" layoutY="306.0" onAction="#loginByPhone" onMouseClicked="#toPatLoginByPhone" text="手机号登陆" />
+      <Hyperlink layoutX="753.0" layoutY="424.0" onMouseClicked="#toPatRegister" text="注册新用户" />
+      <Hyperlink fx:id="loginByPhone" layoutX="753.0" layoutY="372.0" onAction="#loginByPhone" onMouseClicked="#toPatLoginByPhone" text="手机号登陆" />
    </children>
 </AnchorPane>

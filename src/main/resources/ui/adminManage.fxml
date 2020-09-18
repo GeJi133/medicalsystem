@@ -32,7 +32,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="950.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.adminManageController">
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.adminManageController">
    <children>
       <Pane prefHeight="160.0" prefWidth="1500.0" style="-fx-background-color: rgb(70,114,163);">
          <children>
@@ -70,7 +70,7 @@
             <Button fx:id="admin_manage" mnemonicParsing="false" onAction="#OnAdminManagePane" prefHeight="65.0" prefWidth="220.0" style="-fx-background-color: #ffffff; -fx-border-color: lightgray; -fx-border-width: 1px;" text="账号管理" textFill="#859197">
                <font>
                   <Font name="System Bold" size="27.0" />
-               </font></Button>
+               </font></Button>.+-
             <Button fx:id="info_search" mnemonicParsing="false" onAction="#OnSearchInfoPane" prefHeight="65.0" prefWidth="220.0" style="-fx-background-color: #ffffff; -fx-border-color: lightgray; -fx-border-width: 1px;" text="信息查询" textFill="#859197">
                <font>
                   <Font name="System Bold" size="27.0" />

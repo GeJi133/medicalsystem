@@ -26,7 +26,7 @@ public class patOptionController {
             fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
             Parent root = fxmlLoader.load();
             patStage.setTitle("患者基本信息");
-            Scene scene = new Scene(root, 1500, 950);
+            Scene scene = new Scene(root, 1080, 720);
             patStage.setScene(scene);
             patController controller = fxmlLoader.getController();   //获取Controller的实例对象
             controller.Init();
@@ -44,7 +44,7 @@ public class patOptionController {
             Stage patStage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("/ui/patAppointmentFXML.fxml"));
             patStage.setTitle("患者预约挂号");
-            patStage.setScene(new Scene(root, 600, 400));
+            patStage.setScene(new Scene(root, 1080, 720));
             patStage.show();
             ((Node) (mouseEvent.getSource())).getScene().getWindow().hide();
         }
@@ -63,7 +63,7 @@ public class patOptionController {
             fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
             Parent root = fxmlLoader.load();
             patStage.setTitle("患者充值");
-            Scene scene = new Scene(root, 600, 400);
+            Scene scene = new Scene(root, 1080, 720);
             patStage.setScene(scene);
             patRechargeController controller = fxmlLoader.getController();   //获取Controller的实例对象
             controller.Init();
@@ -85,7 +85,7 @@ public class patOptionController {
             fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
             Parent root = fxmlLoader.load();
             patStage.setTitle("患者详细信息");
-            Scene scene = new Scene(root, 900, 600);
+            Scene scene = new Scene(root, 1080, 720);
             patStage.setScene(scene);
             patDetailController controller = fxmlLoader.getController();   //获取Controller的实例对象
             controller.Init();
@@ -110,7 +110,7 @@ public class patOptionController {
                 Stage patStage = new Stage();
                 Parent root = FXMLLoader.load(getClass().getResource("/ui/patLoginFXML.fxml"));
                 patStage.setTitle("患者登录");
-                patStage.setScene(new Scene(root, 600, 400));
+                patStage.setScene(new Scene(root, 1080, 720));
                 patStage.show();
                 ((Node) (mouseEvent.getSource())).getScene().getWindow().hide();
             }

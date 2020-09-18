@@ -14,30 +14,30 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="docLogPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@MainLoginStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DoctorLoginController">
+<AnchorPane fx:id="docLogPane" prefHeight="720.0" prefWidth="1080.0" stylesheets="@MainLoginStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DoctorLoginController">
    <children>
-      <Button layoutX="136.0" layoutY="334.0" mnemonicParsing="false" onAction="#doctorLogin" prefHeight="23.0" prefWidth="123.0" text="登   录" />
-      <Button layoutX="355.0" layoutY="334.0" mnemonicParsing="false" onAction="#docRet" prefHeight="23.0" prefWidth="123.0" text="返    回" />
-      <Label layoutX="108.0" layoutY="213.0" text="工   号：">
+      <Button layoutX="363.0" layoutY="502.0" mnemonicParsing="false" onAction="#doctorLogin" prefHeight="35.0" prefWidth="99.0" text="登   录" />
+      <Button layoutX="572.0" layoutY="502.0" mnemonicParsing="false" onAction="#docRet" prefHeight="35.0" prefWidth="99.0" text="返    回" />
+      <Label layoutX="361.0" layoutY="377.0" text="工   号：">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label layoutX="112.0" layoutY="271.0" text="密   码：">
+      <Label layoutX="362.0" layoutY="429.0" text="密   码：">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <TextField fx:id="docId" layoutX="199.0" layoutY="209.0" prefHeight="30.0" prefWidth="239.0" />
-      <PasswordField fx:id="docPwd" layoutX="201.0" layoutY="266.0" prefHeight="30.0" prefWidth="239.0" />
-      <Label layoutX="265.0" layoutY="165.0" text="医生登录">
+      <TextField fx:id="docId" layoutX="425.0" layoutY="371.0" prefHeight="30.0" prefWidth="239.0" />
+      <PasswordField fx:id="docPwd" layoutX="425.0" layoutY="423.0" prefHeight="30.0" prefWidth="239.0" />
+      <Label layoutX="490.0" layoutY="309.0" text="医生登录">
          <font>
             <Font name="Calibri Light" size="25.0" />
          </font>
       </Label>
-      <ImageView fitHeight="120.0" fitWidth="120.0" layoutX="250.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="158.0" fitWidth="158.0" layoutX="461.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/doctor.png" />
          </image>
       </ImageView>
-      <Hyperlink layoutX="463.0" layoutY="267.0" onMouseClicked="#toDoctorLoginByPhone" text="手机号登陆" />
+      <Hyperlink layoutX="712.0" layoutY="373.0" onMouseClicked="#toDoctorLoginByPhone" text="手机号登陆" />
    </children>
 </AnchorPane>

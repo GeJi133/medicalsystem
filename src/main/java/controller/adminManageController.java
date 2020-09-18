@@ -595,7 +595,7 @@ public class adminManageController {
             Stage mainLogin = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("/ui/MainLoginFXML.fxml"));
             mainLogin.setTitle("医疗管理信息系统");
-            mainLogin.setScene(new Scene(root, 900, 550));
+            mainLogin.setScene(new Scene(root, 1080, 720));
             mainLogin.show();
             ((Node) (actionEvent.getSource())).getScene().getWindow().hide();
         }

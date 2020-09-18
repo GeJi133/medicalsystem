@@ -36,7 +36,7 @@ public class DoctorLoginController {
             Stage docLoginStage=new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("/ui/DoctorLoginByPhone.fxml"));
             docLoginStage.setTitle("医生管理系统");
-            docLoginStage.setScene(new Scene(root, 600, 400));
+            docLoginStage.setScene(new Scene(root, 1080, 720));
             docLoginStage.show();
 //            new Main ().close(actionEvent);
 //
@@ -73,7 +73,7 @@ public class DoctorLoginController {
                 control.initDocName(doctorinfo);
 
                 mainStage.setTitle("医生管理系统");
-                mainStage.setScene(new Scene(root, 1500, 950));
+                mainStage.setScene(new Scene(root, 1080, 720));
                 mainStage.show();
                 new MainLoginController().close(event);
             }

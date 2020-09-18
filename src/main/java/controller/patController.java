@@ -49,7 +49,7 @@ public class patController {
             Stage patStage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("/ui/patOptionFXML.fxml"));
             patStage.setTitle("患者选择界面");
-            patStage.setScene(new Scene(root, 600, 400));
+            patStage.setScene(new Scene(root, 1080, 720));
             patStage.show();
             ((Node) (mouseEvent.getSource())).getScene().getWindow().hide();
         }

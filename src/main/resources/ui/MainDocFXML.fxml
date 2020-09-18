@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
@@ -21,9 +28,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="docName" prefHeight="950.0" prefWidth="1500.0" stylesheets="@MainDocStyle.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainDocController">
+<AnchorPane fx:id="docName" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" stylesheets="@MainDocStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainDocController">
    <children>
-      <Pane layoutX="5.0" prefHeight="71.0" prefWidth="1500.0">
+      <Pane prefHeight="720.0" prefWidth="1080.0">
          <children>
             <Label fx:id="label1" layoutX="14.0" layoutY="14.0" text="医疗管理系统——医生管理">
                <effect>
@@ -36,9 +43,9 @@
             <Label fx:id="hello" layoutX="1292.0" layoutY="36.0" text="您好，" />
             <Label fx:id="docName2" layoutX="1367.0" layoutY="36.0" text="唐 明" />
          </children></Pane>
-      <Pane fx:id="ConPane" layoutY="98.0" prefHeight="851.0" prefWidth="1500.0">
+      <Pane fx:id="ConPane" layoutY="98.0" prefHeight="630.0" prefWidth="1080.0">
          <children>
-            <Pane fx:id="operationPane" layoutX="249.0" layoutY="17.0" prefHeight="834.0" prefWidth="1250.0" visible="false">
+            <Pane fx:id="operationPane" layoutX="242.0" prefHeight="630.0" prefWidth="838.0" visible="false">
                <children>
                   <Label layoutX="199.0" layoutY="152.0" prefHeight="41.0" prefWidth="111.0" text="病人姓名：">
                      <font>
@@ -83,7 +90,7 @@
                   </ComboBox>
                </children>
             </Pane>
-            <Pane fx:id="dutyPane" layoutX="249.0" layoutY="17.0" prefHeight="834.0" prefWidth="1250.0" visible="false">
+            <Pane fx:id="dutyPane" layoutX="242.0" prefHeight="630.0" prefWidth="838.0" visible="false">
                <children>
                   <TableView fx:id="tabDuty" layoutY="64.0" prefHeight="707.0" prefWidth="1256.0">
                     <columns>
@@ -138,7 +145,7 @@
                      </font></Label>
                </children>
             </Pane>
-            <Pane fx:id="perInfoPane" layoutX="249.0" layoutY="17.0" prefHeight="834.0" prefWidth="1250.0" visible="false">
+            <Pane fx:id="perInfoPane" layoutX="242.0" prefHeight="630.0" prefWidth="838.0" visible="false">
                <children>
                   <Label layoutX="21.0" layoutY="14.0" prefHeight="61.0" prefWidth="111.0" text="姓   名：">
                      <font>
@@ -237,7 +244,7 @@
                      </font></Button>
                </children>
             </Pane>
-            <Pane fx:id="medAllPane" layoutX="249.0" layoutY="17.0" prefHeight="834.0" prefWidth="1250.0" visible="false">
+            <Pane fx:id="medAllPane" layoutX="242.0" prefHeight="630.0" prefWidth="838.0" visible="false">
                <children>
                   <TableView fx:id="medAllView" layoutX="14.0" layoutY="69.0" prefHeight="751.0" prefWidth="1223.0">
                     <columns>
@@ -249,7 +256,7 @@
                   </TableView>
                </children>
             </Pane>
-            <Pane fx:id="addSucPane" layoutX="249.0" layoutY="17.0" prefHeight="834.0" prefWidth="1250.0" visible="false">
+            <Pane fx:id="addSucPane" layoutX="242.0" prefHeight="630.0" prefWidth="838.0" visible="false">
                <children>
                   <Label layoutX="521.0" layoutY="265.0" text="添加成功">
                      <font>
@@ -262,7 +269,7 @@
                      </font></Button>
                </children>
             </Pane>
-            <Pane fx:id="addpathis" layoutX="249.0" layoutY="17.0" prefHeight="834.0" prefWidth="1250.0" visible="false">
+            <Pane fx:id="addpathis" layoutX="242.0" prefHeight="630.0" prefWidth="838.0" visible="false">
                <children>
                   <Label layoutX="14.0" layoutY="14.0" text="病历号：">
                      <font>
@@ -452,7 +459,7 @@
                   <Button fx:id="checkMed" layoutX="626.0" layoutY="2.0" mnemonicParsing="false" onAction="#checkCon" prefHeight="32.0" prefWidth="54.0" text="查询" />
                </children>
             </Pane>
-            <Pane fx:id="checkpatient" layoutX="249.0" layoutY="17.0" prefHeight="834.0" prefWidth="1250.0" visible="false">
+            <Pane fx:id="checkpatient" layoutX="242.0" prefHeight="630.0" prefWidth="838.0" visible="false">
                <children>
                   <Label layoutX="6.0" layoutY="21.0" prefHeight="31.0" prefWidth="227.0" text="患者卡号：">
                      <font>
@@ -584,7 +591,7 @@
                      </font></Label>
                </children>
             </Pane>
-            <Pane fx:id="addpane" layoutX="249.0" layoutY="17.0" prefHeight="834.0" prefWidth="1250.0" visible="false">
+            <Pane fx:id="addpane" layoutX="242.0" prefHeight="630.0" prefWidth="838.0" visible="false">
                <children>
                   <Label layoutX="469.0" layoutY="199.0" prefHeight="47.0" prefWidth="395.0" text="请输入患者的卡号">
                      <font>
@@ -603,7 +610,7 @@
                   </Button>
                </children>
             </Pane>
-            <VBox fx:id="itmes" prefHeight="851.0" prefWidth="242.0">
+            <VBox fx:id="itmes" prefHeight="630.0" prefWidth="242.0">
                <children>
                   <Button fx:id="btnadd" mnemonicParsing="false" onAction="#AddPatient" prefHeight="70.0" prefWidth="242.0" text="添加病历" />
                   <Button fx:id="btncheck" mnemonicParsing="false" onAction="#checkPatHis" prefHeight="70.0" prefWidth="279.0" text="查看病历" />
@@ -614,9 +621,9 @@
                   <Button fx:id="exit" mnemonicParsing="false" onAction="#exitSys" prefHeight="70.0" prefWidth="253.0" text="退出系统" />
                </children>
             </VBox>
-            <Pane fx:id="welcomePane" layoutX="243.0" layoutY="3.0" prefHeight="851.0" prefWidth="1256.0">
+            <Pane fx:id="welcomePane" layoutX="242.0" prefHeight="630.0" prefWidth="838.0">
                <children>
-                  <Label fx:id="welcomeLab" layoutX="317.0" layoutY="315.0" text="欢迎使用医疗管理系统">
+                  <Label fx:id="welcomeLab" layoutX="69.0" layoutY="233.0" text="欢迎使用医疗管理系统">
                   <effect>
                      <Reflection bottomOpacity="0.2" fraction="0.7" topOffset="-5.0" />
                   </effect>

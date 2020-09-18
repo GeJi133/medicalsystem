@@ -83,7 +83,7 @@ public class patRegisterController {
                 fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
                 Parent root = fxmlLoader.load();
                 primaryStage.setTitle("患者登录");
-                Scene scene = new Scene(root, 600, 400);
+                Scene scene = new Scene(root, 1080, 720);
                 primaryStage.setScene(scene);
                 patLoginController controller = fxmlLoader.getController();   //获取Controller的实例对象
                 controller.Init();
@@ -103,7 +103,7 @@ public class patRegisterController {
             Stage patStage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("/ui/patLoginFXML.fxml"));
             patStage.setTitle("患者登录");
-            patStage.setScene(new Scene(root, 600, 400));
+            patStage.setScene(new Scene(root, 1080, 720));
             patStage.show();
             ((Node) (mouseEvent.getSource())).getScene().getWindow().hide();
         }catch (Exception e){

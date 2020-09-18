@@ -971,7 +971,7 @@ public class MainDocController {
     public void Change(ActionEvent actionEvent) throws IOException {
         Stage primaryStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/ui/MainLoginFXML.fxml"));
-        Scene scene = new Scene(root,900,550);
+        Scene scene = new Scene(root,1080,720);
         primaryStage.setScene(scene);
         scene.getStylesheets().add(
                 getClass().getResource("/ui/MainDocStyle.css").toExternalForm());
