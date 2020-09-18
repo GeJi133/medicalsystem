@@ -1,7 +1,6 @@
 package dao;
 
 import entity.Admininfo;
-import entity.Doctorinfo;
 import entity.DrugSales;
 import entity.depDiagnosisNumber;
 
@@ -10,7 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class AdminInfoDao {
 
@@ -33,6 +31,7 @@ public class AdminInfoDao {
         catch (Exception e){
             e.printStackTrace();
         }
+
         finally {
             BaseDao.closeAll(conn,ps,rs);
         }
