@@ -19,7 +19,7 @@ public class BaseDao {
 	/* 获得连接的方法 */
 	public static Connection getconn() {
 		//数据库服务器路径，bookSys为数据库名
-		String url = "jdbc:mysql://localhost:3306/medicalsystem?useUnicode=yes&characterEncoding=UTF-8";
+		String url = "jdbc:mysql://127.0.0.1:3306/medicalsystem?useUnicode=yes&characterEncoding=UTF-8";
 		String user = "root";
 		String password = "123456";
 		Connection conn = null;

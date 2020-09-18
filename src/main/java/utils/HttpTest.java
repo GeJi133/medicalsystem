@@ -48,8 +48,8 @@ public class HttpTest {
                 e.printStackTrace();
             }
         }
-
     }
+
     public static void main(String[] args) throws IOException{
         ServerSocket serverSocket = new ServerSocket(8888);
         while (true) {//一直监听，直到受到停止的命令

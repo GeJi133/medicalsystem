@@ -1,6 +1,11 @@
 package controller;
 
+import com.alipay.api.AlipayApiException;
+import com.aliyuncs.http.HttpResponse;
 import dao.PatientInfoDao;
+import dao.RechargeDao;
+import entity.Recharge;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,28 +14,32 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import utils.ALipayFileChange;
 import utils.AlipayConfigUtil;
 import utils.HttpTest;
+import utils.alipay;
 
 import java.io.IOException;
 
-public class patRechargeController {
-    @FXML private TextField cardRemain;
+public class patRechargeController extends Thread{
+    @FXML private Label cardRemain;
     @FXML private TextField amount;
     @FXML private ComboBox payMethod;
-    @FXML private ImageView image;
+    private Recharge recharge;
+//    @FXML private ImageView image;
     //患者充值界面初始化
     public void Init(){
         cardRemain.setText(String.valueOf(PatientInfoDao.patInfo.getPatDeposit()));
     }
     //充值按钮响应函数
     @FXML
-    public void Recharge(MouseEvent mouseEvent) {
+    public void Recharge(MouseEvent mouseEvent) throws AlipayApiException, IOException {
         if (Double.parseDouble(amount.getText()) < 0) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("失败");
@@ -40,21 +49,88 @@ public class patRechargeController {
             amount.clear();
         }
         else {
-            PatientInfoDao patientdao = new PatientInfoDao();
-            int count = patientdao.patRecharge(Double.parseDouble(amount.getText()));
-            if(count > 0)
-            {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("成功");
-                alert.setHeaderText("充值成功！");
-                alert.setContentText("您已充值成功，目前卡内余额为："+ (PatientInfoDao.patInfo.getPatDeposit() + Double.parseDouble(amount.getText())));
-                alert.show();
-                PatientInfoDao.patInfo.setPatDeposit(Float.parseFloat(String.valueOf(PatientInfoDao.patInfo.getPatDeposit() + Double.parseDouble(amount.getText()))));
-                cardRemain.setText(String.valueOf(PatientInfoDao.patInfo.getPatDeposit()));
-                amount.clear();
-            }
+
+            recharge=new Recharge (PatientInfoDao.patInfo.getPatId (),Float.parseFloat (amount.getText()));
+//            RechargeDao.changeDeposit (recharge);
+            RechargeDao.newRecharge (recharge);
+            System.out.println (recharge.toString ());
+//            recharge=RechargeDao.get
+            String result=alipay.pay (recharge);
+
+            ALipayFileChange.changeFile (result);
+            System.out.println (result);
+
+            Stage patStage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/ui/alipay.fxml"));
+            patStage.setTitle("html");
+            patStage.setScene(new Scene(root, 600, 400));
+            patStage.show();
+//            WaitForResponse wait=new WaitForResponse (recharge);
+
+            ((Node) (mouseEvent.getSource())).getScene().getWindow().hide();
+//            this.start ();
+
+//            PatientInfoDao patientdao = new PatientInfoDao();
+//            int count = patientdao.patRecharge(Double.parseDouble(amount.getText()));
+//            if(count > 0)
+//            {
+//                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//                alert.setTitle("成功");
+//                alert.setHeaderText("充值成功！");
+//                alert.setContentText("您已充值成功，目前卡内余额为："+ (PatientInfoDao.patInfo.getPatDeposit()));
+//                alert.show();
+//                PatientInfoDao.patInfo.setPatDeposit(Float.parseFloat(String.valueOf(PatientInfoDao.patInfo.getPatDeposit() + Double.parseDouble(amount.getText()))));
+//                cardRemain.setText(String.valueOf(PatientInfoDao.patInfo.getPatDeposit()));
+//                amount.clear();
+//            }
+
+
         }
     }
+
+    public void run()  {
+        System.out.println ("waitingforresponse");
+
+        try {
+            HttpTest.waitForResponse ();
+        } catch (IOException e) {
+            e.printStackTrace ();
+        }
+
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Stage patStage = new Stage();
+                    Parent root = FXMLLoader.load(getClass().getResource("/ui/patRechargeFXML.fxml"));
+                    patStage.setTitle("患者选择界面");
+                    patStage.setScene(new Scene (root, 600, 400));
+                    patStage.show();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+//    private void waitForResponse() throws IOException {
+//        System.out.println ("waitingforresponse");
+//
+//        HttpTest.waitForResponse ();
+//        RechargeDao.changeDeposit (recharge);
+//        RechargeDao.newRecharge (recharge);
+//
+//        try {
+//            Stage patStage = new Stage();
+//            Parent root = FXMLLoader.load(getClass().getResource("/ui/patRechargeFXML.fxml"));
+//            patStage.setTitle("患者选择界面");
+//            patStage.setScene(new Scene(root, 600, 400));
+//            patStage.show();
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//    }
     //返回按钮响应函数
     @FXML
     public void RechargeRet(MouseEvent mouseEvent) {
@@ -68,7 +144,6 @@ public class patRechargeController {
         }catch (Exception e){
             e.printStackTrace();
         }
-
     }
     //选择充值方式
     public void MethodChose(ActionEvent actionEvent) throws IOException {
@@ -103,6 +178,6 @@ public class patRechargeController {
         else {
             img = new Image("image/empty.png");
         }
-        image.setImage(img);
+//        image.setImage(img);
     }
 }

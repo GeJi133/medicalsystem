@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80012
 File Encoding         : 65001
 
-Date: 2020-09-16 10:44:35
+Date: 2020-09-18 18:44:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -248,13 +248,47 @@ CREATE TABLE `patientinfo` (
 -- ----------------------------
 -- Records of patientinfo
 -- ----------------------------
-INSERT INTO `patientinfo` VALUES ('1', 'ywj', 'm', '23', '123', '-2613.7', '2019-01-02', '12345612345', '18956778818');
+INSERT INTO `patientinfo` VALUES ('1', 'ywj', 'm', '23', '123', '-1989.7', '2019-01-02', '12345612345', '18956778818');
 INSERT INTO `patientinfo` VALUES ('2', '三毛', '男', '23', '123', '-46.5', '2019-21-02', '12312312312', '18956778819');
 INSERT INTO `patientinfo` VALUES ('3', '11', '男', '23', '123', '0', '2019-24-02', '12312312312', '18956778817');
 INSERT INTO `patientinfo` VALUES ('4', '123', '男', '12', '124', '0', '2019-41-02', '12214124124', '18956778812');
 INSERT INTO `patientinfo` VALUES ('5', '罗贝尔', '男', '20', '1234', '0', '2019-09-02', '11111111111', '18956778811');
 INSERT INTO `patientinfo` VALUES ('6', '自驾游', '男', '56', '123', '0', '2019-09-02', '12312312311', '18956778822');
 INSERT INTO `patientinfo` VALUES ('7', '姚文进', '男', '23', '123', '0', '2019-09-02', '123', '18956778898');
+
+-- ----------------------------
+-- Table structure for recharge
+-- ----------------------------
+DROP TABLE IF EXISTS `recharge`;
+CREATE TABLE `recharge` (
+  `rid` int(11) NOT NULL,
+  `patid` int(11) DEFAULT NULL,
+  `date` varchar(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `amount` float(255,0) DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`rid`)
+) ENGINE=MyISAM AUTO_INCREMENT=110 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Records of recharge
+-- ----------------------------
+INSERT INTO `recharge` VALUES ('100', '100', '1', '1', '1');
+INSERT INTO `recharge` VALUES ('101', '99', '99', '99', '1');
+INSERT INTO `recharge` VALUES ('102', '1000', '2020-9-11', '55', '1');
+INSERT INTO `recharge` VALUES ('103', '1', '2020-09-17', '15', '1');
+INSERT INTO `recharge` VALUES ('104', '1', '2020-09-17', '100', '1');
+INSERT INTO `recharge` VALUES ('105', '1', '2020-09-17', '100', '1');
+INSERT INTO `recharge` VALUES ('106', '1', '2020-09-17', '100', '1');
+INSERT INTO `recharge` VALUES ('107', '1', '2020-09-17', '100', '1');
+INSERT INTO `recharge` VALUES ('108', '1', '2020-09-17', '100', '1');
+INSERT INTO `recharge` VALUES ('109', '1', '2020-09-18', '100', '1');
+INSERT INTO `recharge` VALUES ('110', '1', '2020-09-18', '111', '0');
+INSERT INTO `recharge` VALUES ('111', '1', '2020-09-18', '344', '0');
+INSERT INTO `recharge` VALUES ('112', '1', '2020-09-18', '1145', '0');
+INSERT INTO `recharge` VALUES ('113', '1', '2020-09-18', '444', '2');
+INSERT INTO `recharge` VALUES ('114', '1', '2020-09-18', '55', '0');
+INSERT INTO `recharge` VALUES ('115', '1', '2020-09-18', '66', '2');
+INSERT INTO `recharge` VALUES ('116', '1', '2020-09-18', '33', '0');
 
 -- ----------------------------
 -- Table structure for workinfo

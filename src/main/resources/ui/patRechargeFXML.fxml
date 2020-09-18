@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
@@ -11,24 +16,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.patRechargeController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.patRechargeController">
    <children>
       <Label layoutX="220.0" layoutY="58.0" text="病人充值">
          <font>
             <Font name="Calibri" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="97.0" layoutY="188.0" text="充值方式">
+      <Label layoutX="101.0" layoutY="145.0" text="充值方式">
          <font>
             <Font name="Calibri" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="97.0" layoutY="250.0" text="充值金额">
+      <Label layoutX="101.0" layoutY="217.0" text="充值金额">
          <font>
             <Font name="Calibri" size="18.0" />
          </font>
       </Label>
-      <ComboBox fx:id="payMethod" layoutX="197.0" layoutY="189.0" onAction="#MethodChose" prefHeight="23.0" prefWidth="95.0" promptText="微信">
+      <ComboBox fx:id="payMethod" layoutX="203.0" layoutY="141.0" onAction="#MethodChose" prefHeight="30.0" prefWidth="194.0" promptText="支付宝">
          <items>
             <FXCollections fx:factory="observableArrayList">
                <String fx:value="微信" />
@@ -37,27 +42,13 @@
             </FXCollections>
          </items>
       </ComboBox>
-      <TextField fx:id="cardRemain" editable="false" layoutX="197.0" layoutY="125.0" prefHeight="23.0" prefWidth="95.0" />
-      <TextField fx:id="amount" layoutX="197.0" layoutY="250.0" prefHeight="23.0" prefWidth="95.0" />
-      <Label layoutX="97.0" layoutY="124.0" text="卡内余额">
-         <font>
-            <Font name="Calibri" size="18.0" />
-         </font>
-      </Label>
-      <ImageView fx:id="image" fitHeight="160.0" fitWidth="160.0" focusTraversable="true" layoutX="338.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../image/WeChat.png" />
-         </image>
-      </ImageView>
-      <Button layoutX="137.0" layoutY="303.0" mnemonicParsing="false" onMouseClicked="#Recharge" prefHeight="23.0" prefWidth="120.0" text="充值">
+      <TextField fx:id="amount" layoutX="203.0" layoutY="213.0" prefHeight="30.0" prefWidth="132.0" />
+      <Button layoutX="143.0" layoutY="283.0" mnemonicParsing="false" onMouseClicked="#Recharge" prefHeight="23.0" prefWidth="120.0" text="充值">
          <font>
             <Font name="Calibri" size="18.0" />
          </font>
       </Button>
-      <Button layoutX="358.0" layoutY="303.0" mnemonicParsing="false" onMouseClicked="#RechargeRet" prefHeight="36.0" prefWidth="120.0" text="  返 回  ">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
+      <Label layoutX="383.0" layoutY="218.0" text="卡内余额" />
+      <Label fx:id="cardRemain" layoutX="471.0" layoutY="218.0" text="1000" />
    </children>
 </AnchorPane>
