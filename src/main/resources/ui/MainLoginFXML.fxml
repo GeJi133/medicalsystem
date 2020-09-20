@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="MainLogPane" prefHeight="720" prefWidth="1080" stylesheets="@MainLoginStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainLoginController">
+<AnchorPane fx:id="MainLogPane" minWidth="-Infinity" prefHeight="720" prefWidth="1080" stylesheets="@MainLoginStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainLoginController">
    <children>
       <ImageView fitHeight="158.0" fitWidth="158.0" layoutX="172.0" layoutY="245.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -34,7 +34,7 @@
       <Button layoutX="201.0" layoutY="478.0" mnemonicParsing="false" onAction="#enterDocLogin" prefHeight="35.0" prefWidth="99.0" text="医生登录" />
       <Button fx:id="patLogin" layoutX="491.0" layoutY="478.0" mnemonicParsing="false" onMouseClicked="#toPatLogin" prefHeight="35.0" prefWidth="99.0" text="患者登录" />
       <Button fx:id="adminLogin" layoutX="781.0" layoutY="478.0" mnemonicParsing="false" onAction="#enterAdminLogin" prefHeight="35.0" prefWidth="99.0" text="管理员登录" />
-      <ImageView fitHeight="282.0" fitWidth="713.0" layoutX="474.0" layoutY="-12.0">
+      <ImageView fitHeight="229.0" fitWidth="410.0" layoutX="670.0" layoutY="-30.0">
          <image>
             <Image url="@../image/title.png" />
          </image>
