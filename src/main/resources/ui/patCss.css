@@ -1,0 +1,11 @@
+#patDetailPane{
+    -fx-background-image:url("/image/app.jpg");
+}
+
+#patAppointmentPane{
+    -fx-background-image:url("/image/app.jpg");
+}
+
+#patRechargePane{
+    -fx-background-image:url("/image/app.jpg");
+}

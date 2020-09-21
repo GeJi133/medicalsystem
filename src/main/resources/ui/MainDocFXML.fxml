@@ -1,0 +1,640 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="docName" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" stylesheets="@MainDocStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainDocController">
+   <children>
+      <Pane prefHeight="720.0" prefWidth="1080.0">
+         <children>
+            <Label fx:id="docName2" layoutX="942.0" layoutY="33.0" text="唐 明" />
+            <ImageView fitHeight="176.0" fitWidth="300.0" layoutX="-40.0" layoutY="-28.0">
+               <image>
+                  <Image url="@../image/title.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="hello" layoutX="870.0" layoutY="33.0" text="您好，" />
+         </children></Pane>
+      <Pane fx:id="ConPane" layoutY="98.0" prefHeight="630.0" prefWidth="1080.0">
+         <children>
+            <Pane fx:id="operationPane" layoutX="242.0" prefHeight="630.0" prefWidth="838.0" visible="false">
+               <children>
+                  <Label layoutX="150.0" layoutY="80.0" prefHeight="41.0" prefWidth="111.0" text="病人姓名：">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="Name7" layoutX="300.0" layoutY="80.0" prefHeight="30.0" prefWidth="467.0" />
+                  <Label layoutX="150.0" layoutY="180.0" prefHeight="24.0" prefWidth="93.0" text="病人卡号：">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="Id7" layoutX="300.0" layoutY="180.0" prefHeight="30.0" prefWidth="467.0" />
+                  <Label layoutX="150.0" layoutY="280.0" prefHeight="24.0" prefWidth="93.0" text="手术名称：">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="opName7" layoutX="300.0" layoutY="280.0" prefHeight="30.0" prefWidth="467.0" />
+                  <Label layoutX="150.0" layoutY="380.0" prefHeight="24.0" prefWidth="80.0" text="手术时间:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="400.0" layoutY="550.0" mnemonicParsing="false" onAction="#conOpration" text="确   认" />
+                  <Label layoutX="150.0" layoutY="480.0" text="手术室：">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="shijian" layoutX="300.0" layoutY="380.0" prefHeight="29.0" prefWidth="467.0" />
+                  <ComboBox fx:id="sss" layoutX="300.0" layoutY="480.0" prefHeight="29.0" prefWidth="467.0">
+                     <items>
+                        <FXCollections fx:factory="observableArrayList">
+                           <String fx:value="Ⅰ类手术室" />
+                           <String fx:value="Ⅱ类手术室" />
+                           <String fx:value="Ⅲ类手术室" />
+                           <String fx:value="Ⅳ类手术室" />
+                           <String fx:value="Ⅴ类手术室" />
+                        </FXCollections>
+                     </items>
+                  </ComboBox>
+               </children>
+            </Pane>
+            <Pane fx:id="dutyPane" layoutX="242.0" prefHeight="630.0" prefWidth="838.0" visible="false">
+               <children>
+                  <TableView fx:id="tabDuty" layoutY="64.0" prefHeight="566.0" prefWidth="838.0">
+                    <columns>
+                      <TableColumn fx:id="docNameCol" prefWidth="110.0" text="值班医生" />
+                      <TableColumn fx:id="Monday" prefWidth="104.0" text="星期一" />
+                        <TableColumn fx:id="Tuesday" prefWidth="104.0" text="星期二" />
+                        <TableColumn fx:id="Wensday" prefWidth="104.0" text="星期三" />
+                        <TableColumn fx:id="Thursday" prefWidth="104.0" text="星期四" />
+                        <TableColumn fx:id="Friday" prefWidth="104.0" text="星期五" />
+                        <TableColumn fx:id="Saturday" prefWidth="104.0" text="星期六" />
+                        <TableColumn fx:id="Sunday" prefWidth="104.0" text="星期日" />
+                    </columns>
+                  </TableView>
+                  <Button layoutX="170.0" layoutY="23.0" mnemonicParsing="false" onAction="#checkDutyBtn" text="查   询" />
+                  <ComboBox fx:id="selectDep" layoutX="9.0" layoutY="21.0" prefHeight="30.0" prefWidth="141.0" promptText="选择科室">
+                  <items>
+                     <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="急诊科" />
+                        <String fx:value="儿科" />
+                        <String fx:value="眼科" />
+                        <String fx:value="口腔科" />
+                        <String fx:value="皮肤科" />
+                        <String fx:value="妇产科" />
+                        <String fx:value="内分泌科" />
+                        <String fx:value="骨科" />
+                        <String fx:value="肝胆外科" />
+                        <String fx:value="泌尿外科" />
+                        <String fx:value="耳鼻喉科" />
+                        <String fx:value="心血管内科" />
+                        <String fx:value="神经内科" />
+                        <String fx:value="肛肠外科" />
+                        <String fx:value="乳腺甲状腺外科" />
+                        <String fx:value="整形、激光美容外科" />
+                        <String fx:value="神经外科" />
+                        <String fx:value="心胸外科" />
+                        <String fx:value="消化内科" />
+                        <String fx:value="呼吸内科" />
+                        <String fx:value="肿瘤科" />
+                        <String fx:value="中医科" />
+                        <String fx:value="肾内科" />
+                        <String fx:value="检验科" />
+                        <String fx:value="病理科" />
+                        <String fx:value="放射科" />
+                        <String fx:value="药剂科" />
+                        <String fx:value="麻醉科" />
+                     </FXCollections>
+                  </items>
+                  </ComboBox>
+                  <Label layoutX="250.0" layoutY="14.0" prefHeight="32.0" prefWidth="542.0" text="注：上午: 5:00~12:00 下午:12:00~19:00 晚上:19:00~2:00">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+               </children>
+            </Pane>
+            <Pane fx:id="perInfoPane" layoutX="242.0" prefHeight="630.0" prefWidth="838.0" visible="false">
+               <children>
+                  <Label layoutX="21.0" layoutY="14.0" prefHeight="61.0" prefWidth="111.0" text="姓   名：">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="docNameLab" layoutX="128.0" layoutY="18.0" prefHeight="61.0" prefWidth="300.0" text="Label">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="450.0" layoutY="141.0" text="性   别：">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="docSexLab" layoutX="560.0" layoutY="135.0" prefHeight="48.0" prefWidth="111.0" text="Label">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="158.0" fitWidth="158.0" layoutX="670.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="/image/doctor.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="21.0" layoutY="126.0" prefHeight="61.0" prefWidth="97.0" text="年   龄：">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="docAgeLab" layoutX="128.0" layoutY="128.0" prefHeight="61.0" prefWidth="129.0" text="Label">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="450.0" layoutY="29.0" text="工   号：">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="docIdLab" layoutX="560.0" layoutY="31.0" text="Label">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="21.0" layoutY="232.0" text="科   室：">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="docDepLab" layoutX="132.0" layoutY="234.0" text="Label">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="21.0" layoutY="328.0" text="职   称：">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="docJobLab" layoutX="128.0" layoutY="332.0" text="Label">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="21.0" layoutY="422.0" text="联系方式：">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="doctel" layoutX="149.0" layoutY="409.0" prefHeight="61.0" prefWidth="242.0" />
+                  <Button fx:id="butFix" layoutX="550.0" layoutY="400.0" mnemonicParsing="false" onAction="#fixPerInfoclick" prefHeight="78.0" prefWidth="201.0" text="点击修改个人信息">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Button>
+                  <Button fx:id="confix" layoutX="550.0" layoutY="400.0" mnemonicParsing="false" onAction="#conFix" prefHeight="78.0" prefWidth="201.0" text="确认修改">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Button>
+                  <PasswordField fx:id="fixpwd" layoutX="242.0" layoutY="485.0" prefHeight="48.0" prefWidth="249.0" />
+                  <PasswordField fx:id="conpwd" layoutX="243.0" layoutY="550.0" prefHeight="48.0" prefWidth="249.0" />
+                  <Label fx:id="fixpwdlab" layoutX="21.0" layoutY="490.0" prefHeight="41.0" prefWidth="249.0" text="若修改密码请输入：">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="conpwdlab" layoutX="21.0" layoutY="555.0" prefHeight="32.0" prefWidth="172.0" text="确认密码：">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="cancelFix" layoutX="550.0" layoutY="505.0" mnemonicParsing="false" onAction="#cancelFixBut" prefHeight="78.0" prefWidth="201.0" text="取消修改">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Button>
+               </children>
+            </Pane>
+            <Pane fx:id="medAllPane" layoutX="242.0" prefHeight="630.0" prefWidth="838.0" visible="false">
+               <children>
+                  <TableView fx:id="medAllView" prefHeight="630.0" prefWidth="838.0">
+                    <columns>
+                      <TableColumn fx:id="medRecCol" prefWidth="298.99998474121094" text="病历号" />
+                      <TableColumn fx:id="patIdCol" prefWidth="257.0" text="患者卡号" />
+                       <TableColumn fx:id="PatNameCol" prefWidth="300.0" text="患者姓名" />
+                       <TableColumn fx:id="dateCol" prefWidth="429.0" text="看病日期" />
+                    </columns>
+                  </TableView>
+               </children>
+            </Pane>
+            <Pane fx:id="addSucPane" layoutX="242.0" prefHeight="630.0" prefWidth="838.0" visible="false">
+               <children>
+                  <Label layoutX="521.0" layoutY="265.0" text="添加成功">
+                     <font>
+                        <Font size="64.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="backToMainWin" layoutX="579.0" layoutY="475.0" mnemonicParsing="false" onAction="#backToMain" text="返回主页">
+                     <font>
+                        <Font size="24.0" />
+                     </font></Button>
+               </children>
+            </Pane>
+            <Pane fx:id="addpathis" layoutX="242.0" prefHeight="630.0" prefWidth="838.0" visible="false">
+               <children>
+                  <Label layoutX="14.0" layoutY="14.0" text="病历号：">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="patId2" layoutX="483.0" layoutY="14.0" text="123456">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="patName2" layoutX="14.0" layoutY="57.0" text="姓   名：李  四">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="patAge2" layoutX="413.0" layoutY="57.0" text="年   龄：25">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="patSex2" layoutX="14.0" layoutY="100.0" text="性   别：男">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="patPhone2" layoutX="413.0" layoutY="100.0" text="联系电话：13255486513">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label layoutX="14.0" layoutY="143.0" text="病   史：">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label layoutX="14.0" layoutY="186.0" text="主   诉：">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <TextField fx:id="patDemand" layoutX="75.0" layoutY="168.0" prefHeight="61.0" prefWidth="763.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font></TextField>
+                  <Label layoutX="14.0" layoutY="240.0" text="诊   断：">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <TextField fx:id="patResult" layoutX="75.0" layoutY="230.0" prefHeight="41.0" prefWidth="763.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font></TextField>
+                  <Label layoutX="14.0" layoutY="290.0" text="处   置：">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <CheckBox fx:id="isMenzhen" layoutX="108.0" layoutY="290.0" mnemonicParsing="false" text="门  诊">
+                     <font>
+                        <Font size="18.0" />
+                     </font></CheckBox>
+                  <CheckBox fx:id="inHosptalChoose" layoutX="206.0" layoutY="290.0" mnemonicParsing="false" onAction="#inHospital" text="住  院">
+                     <font>
+                        <Font size="18.0" />
+                     </font></CheckBox>
+                  <Button layoutX="740.0" layoutY="520.0" mnemonicParsing="false" onAction="#addPatCon" text="确定">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Button>
+                  <Label fx:id="pathisId2" layoutX="85.0" layoutY="15.0" text="10001">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Pane fx:id="inHospitalPane" layoutX="290.0" layoutY="270.0" prefHeight="78.0" prefWidth="549.0">
+                     <children>
+                        <Label layoutX="4.0" layoutY="7.0" text="科  室：">
+                           <font>
+                              <Font size="18.0" />
+                           </font></Label>
+                        <ComboBox fx:id="RoomId" editable="true" layoutX="58.0" layoutY="4.0" prefHeight="30.0" prefWidth="125.0">
+                           <items>
+                              <FXCollections fx:factory="observableArrayList">
+                                 <String fx:value="急诊科" />
+                                 <String fx:value="儿科" />
+                                 <String fx:value="眼科" />
+                                 <String fx:value="口腔科" />
+                                 <String fx:value="皮肤科" />
+                                 <String fx:value="妇产科" />
+                                 <String fx:value="内分泌科" />
+                                 <String fx:value="骨科" />
+                                 <String fx:value="肝胆外科" />
+                                 <String fx:value="泌尿外科" />
+                                 <String fx:value="耳鼻喉科" />
+                                 <String fx:value="心血管内科" />
+                                 <String fx:value="神经内科" />
+                                 <String fx:value="肛肠外科" />
+                                 <String fx:value="乳腺甲状腺外科" />
+                                 <String fx:value="整形、激光美容外科" />
+                                 <String fx:value="神经外科" />
+                                 <String fx:value="心胸外科" />
+                                 <String fx:value="消化内科" />
+                                 <String fx:value="呼吸内科" />
+                                 <String fx:value="肿瘤科" />
+                                 <String fx:value="中医科" />
+                                 <String fx:value="肾内科" />
+                                 <String fx:value="检验科" />
+                                 <String fx:value="病理科" />
+                                 <String fx:value="放射科" />
+                                 <String fx:value="药剂科" />
+                                 <String fx:value="麻醉科" />
+                              </FXCollections>
+                           </items>
+                        </ComboBox>
+                        <Label layoutX="280.0" layoutY="7.0" text="病床号：">
+                           <font>
+                              <Font size="18.0" />
+                           </font></Label>
+                        <ChoiceBox fx:id="BedId" layoutX="357.0" layoutY="4.0" prefHeight="30.0" prefWidth="190.0">
+                           <items>
+                              <FXCollections fx:factory="observableArrayList">
+                                 <String fx:value="1" />
+                                 <String fx:value="2" />
+                                 <String fx:value="3" />
+                                 <String fx:value="4" />
+                                 <String fx:value="5" />
+                                 <String fx:value="6" />
+                                 <String fx:value="7" />
+                                 <String fx:value="8" />
+                                 <String fx:value="9" />
+                                 <String fx:value="10" />
+                                 <String fx:value="11" />
+                                 <String fx:value="12" />
+                                 <String fx:value="13" />
+                                 <String fx:value="14" />
+                                 <String fx:value="15" />
+                              </FXCollections>
+                           </items>
+                        </ChoiceBox>
+                        <Label layoutX="4.0" layoutY="44.0" prefWidth="80.0" text="入 院：">
+                           <font>
+                              <Font size="18.0" />
+                           </font></Label>
+                        <Label fx:id="inDate" layoutX="75.0" layoutY="42.0" prefHeight="30.0" prefWidth="190.0" text="Label">
+                           <font>
+                              <Font size="18.0" />
+                           </font></Label>
+                        <Label layoutX="280.0" layoutY="44.0" prefWidth="80.0" text="出 院：">
+                           <font>
+                              <Font size="18.0" />
+                           </font></Label>
+                        <ComboBox fx:id="outDate" editable="true" layoutX="357.0" layoutY="41.0" prefHeight="30.0" prefWidth="190.0" />
+                        <Label layoutX="654.0" layoutY="9.0" text="住院费">
+                           <font>
+                              <Font size="18.0" />
+                           </font></Label>
+                        <Label fx:id="hospitalFare" layoutX="628.0" layoutY="34.0" prefHeight="30.0" prefWidth="119.0" text="Label">
+                           <font>
+                              <Font size="18.0" />
+                           </font></Label>
+                     </children>
+                  </Pane>
+                  <TableView fx:id="tabAddMedcine" layoutY="350.0" prefHeight="280.0" prefWidth="700.0">
+                    <columns>
+                      <TableColumn fx:id="medNameCol" prefWidth="200.0" text="药品名称" />
+                      <TableColumn fx:id="useWayCol" minWidth="0.0" prefWidth="200.0" text="使用方法" />
+                        <TableColumn fx:id="amountCol" prefWidth="150.0" text="剂量" />
+                        <TableColumn fx:id="priceCol" prefWidth="150.0" text="价钱" />
+                    </columns>
+                  </TableView>
+                  <Button layoutX="700.0" layoutY="400.0" mnemonicParsing="false" onAction="#continueAdd" text="继续添加药物">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Button>
+                  <Button layoutX="740.0" layoutY="460.0" mnemonicParsing="false" onAction="#deleteMed" text="删除">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Button>
+                  <Label layoutX="413.0" layoutY="14.0" text="卡   号：">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="pathis2" layoutX="80.0" layoutY="130.0" prefHeight="48.0" prefWidth="500.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+               </children>
+            </Pane>
+            <Pane fx:id="menupane" layoutX="277.0" layoutY="35.0" prefHeight="48.0" prefWidth="780.0" visible="false">
+               <children>
+                  <HBox layoutX="-1.0" prefHeight="35.0" prefWidth="601.0">
+                     <children>
+                        <ComboBox fx:id="medCorId" editable="true" prefHeight="51.0" prefWidth="150.0" promptText="病历号" />
+                        <ComboBox fx:id="patCardID" editable="true" prefHeight="49.0" prefWidth="150.0" promptText="卡号" />
+                        <ComboBox fx:id="patName3" editable="true" prefHeight="54.0" prefWidth="150.0" promptText="姓名" />
+                        <ComboBox fx:id="medCorDate" editable="true" prefHeight="52.0" prefWidth="150.0" promptText="日期" />
+                     </children>
+                  </HBox>
+                  <Button fx:id="checkMed" layoutX="626.0" layoutY="2.0" mnemonicParsing="false" onAction="#checkCon" prefHeight="32.0" prefWidth="54.0" text="查询" />
+               </children>
+            </Pane>
+            <Pane fx:id="checkpatient" layoutX="242.0" prefHeight="630.0" prefWidth="838.0" visible="false">
+               <children>
+                  <Label layoutX="6.0" layoutY="21.0" prefHeight="31.0" prefWidth="227.0" text="患者卡号：">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label layoutX="23.0" layoutY="-1.0" text="病历号：">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label layoutX="24.0" layoutY="55.0" text="姓   名：">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label layoutX="476.0" layoutY="55.0" text="年   龄：">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label layoutX="901.0" layoutY="55.0" text="性   别：">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label layoutX="21.0" layoutY="128.0" text="主   诉：">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label layoutX="21.0" layoutY="199.0" text="病   史：">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label layoutX="20.0" layoutY="267.0" text="诊   断：">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label layoutX="20.0" layoutY="328.0" text="处   方：">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label layoutX="476.0" layoutY="22.0" text="科   室：">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label layoutX="7.0" layoutY="92.0" text="住院房号：">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label layoutX="458.0" layoutY="92.0" text="住院床号：">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label layoutX="882.0" layoutY="20.0" text="创建日期：">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label layoutX="884.0" layoutY="92.0" text="出院时间：">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="medHisId4" layoutX="91.0" prefHeight="20.0" prefWidth="111.0" text="Label">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="patId4" layoutX="90.0" layoutY="26.0" prefHeight="20.0" prefWidth="141.0" text="Label">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="curRoom4" layoutX="540.0" layoutY="23.0" prefHeight="20.0" prefWidth="80.0" text="Label">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="createDate4" layoutX="967.0" layoutY="21.0" text="Label">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="patName4" layoutX="89.0" layoutY="56.0" prefHeight="20.0" prefWidth="97.0" text="Label">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="age4" layoutX="539.0" layoutY="56.0" prefHeight="20.0" prefWidth="97.0" text="Label">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="sex4" layoutX="968.0" layoutY="55.0" prefHeight="20.0" prefWidth="76.0" text="Label">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="roomId4" layoutX="92.0" layoutY="92.0" prefHeight="20.0" prefWidth="256.0" text="Label">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="bedId4" layoutX="543.0" layoutY="94.0" prefHeight="20.0" prefWidth="201.0" text="Label">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="outDate4" layoutX="973.0" layoutY="92.0" prefHeight="20.0" prefWidth="249.0" text="Label">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="patDemand4" layoutX="84.0" layoutY="128.0" prefHeight="71.0" prefWidth="1089.0" text="Label">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="patHis4" layoutX="84.0" layoutY="199.0" prefHeight="78.0" prefWidth="1089.0" text="Label">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="result4" layoutX="77.0" layoutY="277.0" prefHeight="48.0" prefWidth="1089.0" text="Label">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <TableView fx:id="tabMedList" layoutY="264.0" prefHeight="366.0" prefWidth="838.0">
+                    <columns>
+                      <TableColumn fx:id="medNameCol2" prefWidth="489.99998474121094" text="药品名称" />
+                      <TableColumn fx:id="useWayCol2" prefWidth="422.0" text="用法" />
+                       <TableColumn fx:id="amountCol2" prefWidth="99.0" text="剂量" />
+                       <TableColumn fx:id="priceCol2" minWidth="0.0" prefWidth="95.0" text="价格" />
+                    </columns>
+                  </TableView>
+                  <Button layoutX="590.0" layoutY="726.0" mnemonicParsing="false" onAction="#backToCheck" text="返   回">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Button>
+                  <Label layoutX="1172.0" layoutY="356.0" text="总消费">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="costAll" layoutX="1121.0" layoutY="396.0" prefHeight="20.0" prefWidth="129.0" text="Label">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+               </children>
+            </Pane>
+            <Pane fx:id="addpane" layoutX="242.0" prefHeight="630.0" prefWidth="838.0" visible="false">
+               <children>
+                  <Label layoutX="250.0" layoutY="150.0" prefHeight="47.0" prefWidth="395.0" text="请输入患者的卡号">
+                     <font>
+                        <Font name="System Bold" size="48.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="patientId" layoutX="300.0" layoutY="260.0" prefHeight="41.0" prefWidth="282.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </TextField>
+                  <Button layoutX="360.0" layoutY="370.0" mnemonicParsing="false" onAction="#checkPat" prefHeight="48.0" prefWidth="119.0" text="确   定">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+            <VBox fx:id="itmes" prefHeight="630.0" prefWidth="242.0" style="-fx-background-color:#ffffff;">
+               <children>
+                  <Button fx:id="btnadd" mnemonicParsing="false" onAction="#AddPatient" prefHeight="70.0" prefWidth="242.0" text="添加病历" />
+                  <Button fx:id="btncheck" mnemonicParsing="false" onAction="#checkPatHis" prefHeight="70.0" prefWidth="279.0" text="查看病历" />
+                  <Button fx:id="btnfix" mnemonicParsing="false" onAction="#fixPerInfo" prefHeight="70.0" prefWidth="275.0" text="完善个人信息" />
+                  <Button fx:id="btncheck" mnemonicParsing="false" onAction="#checkDuty" prefHeight="70.0" prefWidth="272.0" text="查看排班表" />
+                  <Button fx:id="opration" mnemonicParsing="false" onAction="#operation" prefHeight="70.0" prefWidth="253.0" text="安排手术" />
+                  <Button mnemonicParsing="false" onAction="#Change" prefHeight="70.0" prefWidth="253.0" text="退出账号" fx:id="xitong" />
+                  <Button fx:id="exit" mnemonicParsing="false" onAction="#exitSys" prefHeight="70.0" prefWidth="253.0" text="退出系统" />
+               </children>
+            </VBox>
+            <Pane fx:id="welcomePane" layoutX="242.0" prefHeight="630.0" prefWidth="838.0">
+               <children>
+                  <Label fx:id="welcomeLab" layoutX="69.0" layoutY="233.0" text="欢迎使用医疗管理系统">
+                  <effect>
+                     <Reflection bottomOpacity="0.2" fraction="0.7" topOffset="-5.0" />
+                  </effect>
+                  <font>
+                     <Font name="System Bold" size="70.0" />
+                  </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="patAppointmentPane" prefHeight="720.0" prefWidth="1080.0" stylesheets="@patCss.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.patAppoinmentController">
+   <children>
+      <Label layoutX="500.0" layoutY="55.0" text="预约挂号">
+         <font>
+            <Font name="Calibri" size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="353.0" layoutY="233.0" text="选择科室" />
+      <Label layoutX="353.0" layoutY="334.0" text="选择医生" />
+      <ComboBox fx:id="department" layoutX="444.0" layoutY="228.0" onAction="#refreshDoc" prefHeight="30.0" prefWidth="285.0" promptText="急诊科">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:value="急诊科" />
+               <String fx:value="儿科" />
+               <String fx:value="眼科" />
+               <String fx:value="口腔科" />
+               <String fx:value="皮肤科" />
+               <String fx:value="妇产科" />
+               <String fx:value="内分泌科" />
+               <String fx:value="骨科" />
+               <String fx:value="肝胆外科" />
+               <String fx:value="泌尿外科" />
+               <String fx:value="耳鼻喉科" />
+               <String fx:value="心血管内科" />
+               <String fx:value="神经内科" />
+               <String fx:value="肛肠外科" />
+               <String fx:value="乳腺甲状腺外科" />
+               <String fx:value="整形、激光美容外科" />
+               <String fx:value="神经外科" />
+               <String fx:value="心胸外科" />
+               <String fx:value="消化内科" />
+               <String fx:value="呼吸内科" />
+               <String fx:value="肿瘤科" />
+               <String fx:value="中医科" />
+               <String fx:value="肾内科" />
+               <String fx:value="检验科" />
+               <String fx:value="病理科" />
+               <String fx:value="放射科" />
+               <String fx:value="药剂科" />
+               <String fx:value="麻醉科" />
+            </FXCollections>
+         </items>
+      </ComboBox>
+      <ComboBox fx:id="doctor" layoutX="444.0" layoutY="330.0" prefHeight="30.0" prefWidth="284.0" />
+      <Button fx:id="appConfirm" layoutX="342.0" layoutY="466.0" mnemonicParsing="false" onMouseClicked="#Confirm" text="确定挂号" />
+      <Button layoutX="693.0" layoutY="473.0" mnemonicParsing="false" onMouseClicked="#appRet" text="  返 回  " />
+       <TextField fx:id="patId4" layoutX="445.0" layoutY="130.0" prefHeight="30.0" prefWidth="284.0" />
+       <Label layoutX="352.0" layoutY="135.0" text="您的卡号" />
+   </children>
+</AnchorPane>

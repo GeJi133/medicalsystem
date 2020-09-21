@@ -1,0 +1,648 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.adminManageController">
+   <children>
+      <Pane prefHeight="160.0" prefWidth="1080.0" style="-fx-background-color: rgb(70,114,163);" />
+      <Pane layoutY="160.0" prefHeight="100.0" prefWidth="1080.0" style="-fx-background-color: rgb(252,252,252); -fx-border-color: lightgray;">
+         <children>
+            <Button fx:id="exit" layoutX="950.0" layoutY="29.0" mnemonicParsing="false" onAction="#adminManageExit" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #498DC5;" styleClass="btn-radius-normal,blue-theme,btn-basic" text="退出" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            <Button fx:id="refresh" layoutX="829.0" layoutY="29.0" mnemonicParsing="false" onAction="#OnRefreshAll" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #498DC5;" text="刷新" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            <Label fx:id="tip" layoutX="73.0" layoutY="40.0" lineSpacing="15.0" text="欢迎您！管理员：" textFill="#6f6f6f">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+            </Label>
+         </children></Pane>
+      <VBox alignment="TOP_CENTER" layoutX="-7.0" layoutY="260.0" prefHeight="460.0" prefWidth="220.0" style="-fx-background-color:#ffffff;">
+         <children>
+            <Button fx:id="admin_manage" mnemonicParsing="false" onAction="#OnAdminManagePane" prefHeight="66.0" prefWidth="219.0" style="-fx-background-color: #ffffff; -fx-border-color: lightgray; -fx-border-width: 1px;" text="账号管理" textFill="#859197">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font></Button>
+            <Button fx:id="info_search" mnemonicParsing="false" onAction="#OnSearchInfoPane" prefHeight="65.0" prefWidth="220.0" style="-fx-background-color: #ffffff; -fx-border-color: lightgray; -fx-border-width: 1px;" text="信息查询" textFill="#859197">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font></Button>
+            <Button fx:id="data_pane" mnemonicParsing="false" onMouseClicked="#OnReportSta" prefHeight="65.0" prefWidth="220.0" style="-fx-background-color: #ffffff; -fx-border-color: lightgray; -fx-border-width: 1px; " text="报表统计" textFill="#859197">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font></Button>
+            <Button mnemonicParsing="false" onAction="#OnClickOperation" prefHeight="65.0" prefWidth="220.0" style="-fx-background-color: #ffffff; -fx-border-color: lightgray; -fx-border-width: 1px;" text="操作日志" textFill="#859197">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font></Button>
+            <Button mnemonicParsing="false" onAction="#OnClickSystemSetting" prefHeight="65.0" prefWidth="220.0" style="-fx-background-color: #ffffff; -fx-border-color:lightgray; -fx-border-width: 1px;" text="系统设置" textFill="#859197">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <TabPane fx:id="info_pane" layoutX="213.0" layoutY="260.0" prefHeight="460.0" prefWidth="860.0" tabClosingPolicy="UNAVAILABLE" visible="false">
+         <tabs>
+            <Tab fx:id="doc_info" text="医生信息">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="169.0" prefWidth="214.0">
+                     <children>
+                        <TableView fx:id="table_doc" editable="true" layoutX="-2.0" layoutY="88.0" prefHeight="343.0" prefWidth="864.0">
+                           <columns>
+                              <TableColumn fx:id="doccol_id" prefWidth="75.0" text="工号" />
+                              <TableColumn fx:id="doccol_name" prefWidth="75.0" text="姓名" />
+                              <TableColumn fx:id="doccol_gender" prefWidth="75.0" text="性别" />
+                              <TableColumn fx:id="doccol_age" prefWidth="75.0" text="年龄" />
+                              <TableColumn fx:id="doccol_pwd" prefWidth="100.0" text="密码" />
+                              <TableColumn fx:id="doccol_depart" prefWidth="100.0" text="科室" />
+                              <TableColumn fx:id="doccol_rank" prefWidth="100" text="职称" />
+                              <TableColumn fx:id="doccol_tel" prefWidth="100.0" text="联系方式" />
+                              <TableColumn fx:id="doccol_onduty" text="上班时间" />
+                              <TableColumn fx:id="doccol_offduty" text="下班时间" />
+                           </columns>
+                        </TableView>
+                        <HBox fx:id="edit_doc_pane" layoutX="2.0" layoutY="37.0" prefHeight="30.0" prefWidth="864.0" spacing="15.0" visible="false">
+                           <children>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="25.0" text="年龄" />
+                              <Spinner fx:id="age_again" editable="true" max="120" min="1" prefHeight="30.0" prefWidth="100.0" />
+                              <Label minWidth="-Infinity" prefHeight="30.0" prefWidth="25.0" text="密码" />
+                              <TextField fx:id="pwd_again" prefHeight="30.0" prefWidth="100.0" />
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="25.0" text="科室" />
+                              <ComboBox fx:id="depart_again" prefHeight="30.0" prefWidth="102.0">
+                                  <items>
+                                      <FXCollections fx:factory="observableArrayList">
+                                          <String fx:value="急诊科" />
+                                          <String fx:value="儿科" />
+                                          <String fx:value="眼科" />
+                                          <String fx:value="口腔科" />
+                                          <String fx:value="皮肤科" />
+                                          <String fx:value="妇产科" />
+                                          <String fx:value="内分泌科" />
+                                          <String fx:value="骨科" />
+                                          <String fx:value="肝胆外科" />
+                                          <String fx:value="泌尿外科" />
+                                          <String fx:value="耳鼻喉科" />
+                                          <String fx:value="心血管内科" />
+                                          <String fx:value="神经内科" />
+                                          <String fx:value="肛肠外科" />
+                                          <String fx:value="乳腺甲状腺外科" />
+                                          <String fx:value="整形、激光美容外科" />
+                                          <String fx:value="神经外科" />
+                                          <String fx:value="心胸外科" />
+                                          <String fx:value="消化内科" />
+                                          <String fx:value="呼吸内科" />
+                                          <String fx:value="肿瘤科" />
+                                          <String fx:value="中医科" />
+                                          <String fx:value="肾内科" />
+                                          <String fx:value="检验科" />
+                                          <String fx:value="病理科" />
+                                          <String fx:value="放射科" />
+                                          <String fx:value="药剂科" />
+                                          <String fx:value="麻醉科" />
+                                      </FXCollections>
+                                  </items>
+                              </ComboBox>
+                              <Label minWidth="-Infinity" prefHeight="30.0" prefWidth="25.0" text="职称" />
+                              <ComboBox fx:id="rank_again" prefHeight="30.0" prefWidth="111.0">
+                                  <items>
+                                      <FXCollections fx:factory="observableArrayList">
+                                          <String fx:value="住院医师" />
+                                          <String fx:value="主治医师" />
+                                          <String fx:value="副主任医生" />
+                                          <String fx:value="主任医师" />
+                                      </FXCollections>
+                                  </items>
+                              </ComboBox>
+                              <Label minWidth="-Infinity" prefHeight="30.0" prefWidth="50.0" text="上班时间" />
+                              <ComboBox fx:id="on_duty_again" prefHeight="30.0" prefWidth="98.0">
+                                  <items>
+                                          <FXCollections fx:factory="observableArrayList">
+                                              <String fx:value="7:00" />
+                                              <String fx:value="7:30" />
+                                              <String fx:value="8:00" />
+                                              <String fx:value="8:30" />
+                                              <String fx:value="9:00" />
+                                          </FXCollections>
+                                  </items>
+                              </ComboBox>
+                              <Label minWidth="-Infinity" prefHeight="30.0" prefWidth="50.0" text="下班时间" />
+                              <ComboBox fx:id="off_duty_again" prefHeight="30.0" prefWidth="105.0">
+                                 <items>
+                                   <FXCollections fx:factory="observableArrayList">
+                                       <String fx:value="16:00" />
+                                       <String fx:value="16:30" />
+                                       <String fx:value="17:00" />
+                                       <String fx:value="17:30" />
+                                       <String fx:value="18:00" />
+                                   </FXCollections>
+                                  </items>
+                              </ComboBox>
+                              <Button fx:id="edit_again" minWidth="-Infinity" mnemonicParsing="false" onAction="#OnEditDocAgain" prefHeight="30.0" prefWidth="50.0" text="修改" />
+                              <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#OnCancelEdit" prefHeight="30.0" prefWidth="50.0" text="取消" />
+                           </children>
+                        </HBox>
+                        <Pane fx:id="doc_func_pane" layoutX="1.0" layoutY="6.0" prefHeight="66.0" prefWidth="867.0">
+                           <children>
+                              <Button fx:id="add_doc_btn" layoutX="21.0" layoutY="19.0" mnemonicParsing="false" onAction="#OnAddNewDoc" style="-fx-background-color: rgb(247,247,247); -fx-border-color: #498dc5;" text="添加医生" textFill="#498dc5">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Button>
+                              <TextField fx:id="searchfield_doc" layoutX="520.0" layoutY="28.0" prefHeight="30.0" prefWidth="184.0" />
+                              <ChoiceBox fx:id="choice_search" layoutX="1001.0" layoutY="28.0" prefHeight="30.0" prefWidth="88.0">
+                               <items>
+                                   <FXCollections fx:factory="observableArrayList">
+                                       <String fx:value="工号" />
+                                       <String fx:value="姓名" />
+                                       <String fx:value="科室" />
+                                       <String fx:value="职称" />
+                                   </FXCollections>
+                               </items>
+                               </ChoiceBox>
+                              <Button fx:id="search_doc_btn" layoutX="1101.0" layoutY="21.0" mnemonicParsing="false" onAction="#OnSearchBtn" style="-fx-background-color: rgb(247,247,247); -fx-border-color: #498dc5;" text="查询" textFill="#498dc5">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="refresh_doc" layoutX="262.0" layoutY="19.0" mnemonicParsing="false" onAction="#OnFreshDoc" style="-fx-background-color: rgb(247,247,247); -fx-border-color: #498dc5;" text="刷新列表" textFill="#498dc5">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="del_doc_btn" layoutX="141.0" layoutY="19.0" mnemonicParsing="false" onAction="#OnDelNewDoc" style="-fx-background-color: rgb(247,247,247); -fx-border-color: #498dc5;" text="注销医生" textFill="#498dc5">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="383.0" layoutY="19.0" mnemonicParsing="false" onAction="#OnClickEditDoc" style="-fx-background-color: rgb(247,247,247); -fx-border-color: #498dc5;" text="修改信息" textFill="#498dc5">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </Pane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="pat_info" text="患者信息">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: rgb(247,247,247);">
+                     <children>
+                        <TableView fx:id="table_pat" layoutX="-1.0" layoutY="87.0" prefHeight="343.0" prefWidth="864.0">
+                           <columns>
+                              <TableColumn fx:id="patcol_id" prefWidth="100.0" text="卡号" />
+                              <TableColumn fx:id="patcol_name" prefWidth="100.0" text="姓名" />
+                              <TableColumn fx:id="patcol_gender" prefWidth="100.0" text="性别" />
+                              <TableColumn fx:id="patcol_age" prefWidth="100.0" text="年龄" />
+                              <TableColumn fx:id="patcol_pwd" prefWidth="100.0" text="密码" />
+                              <TableColumn fx:id="patcol_deposit" prefWidth="100.0" text="卡内余额" />
+                              <TableColumn fx:id="patcol_createtime" prefWidth="130.0" text="办卡日期" />
+                              <TableColumn fx:id="patcol_tel" prefWidth="130.0" text="联系方式" />
+                           </columns>
+                        </TableView>
+                        <HBox fx:id="edit_pat_pane" alignment="CENTER" layoutY="31.0" prefHeight="30.0" prefWidth="864.0" spacing="15.0" visible="false">
+                           <children>
+                              <Label minWidth="-Infinity" prefHeight="30.0" prefWidth="25.0" text="姓名" />
+                              <TextField fx:id="pat_name_again" prefHeight="30.0" prefWidth="100.0" />
+                              <Label minWidth="-Infinity" prefHeight="30.0" prefWidth="25.0" text="性别" />
+                              <ComboBox fx:id="pat_gender_again" prefHeight="30.0" prefWidth="100.0">
+                                  <items>
+                                      <FXCollections fx:factory="observableArrayList">
+                                          <String fx:value="男" />
+                                          <String fx:value="女" />
+                                      </FXCollections>
+                                  </items>
+                              </ComboBox>
+                              <Label minWidth="-Infinity" prefHeight="30.0" prefWidth="25.0" text="年龄" />
+                              <Spinner fx:id="pat_age_again" editable="true" max="120" min="1" prefHeight="30.0" prefWidth="100.0" />
+                              <Label minWidth="-Infinity" prefHeight="30.0" prefWidth="25.0" text="密码" />
+                              <TextField fx:id="pat_pwd_again" prefHeight="30.0" prefWidth="150.0" />
+                              <Label minWidth="-Infinity" prefHeight="30.0" prefWidth="50.0" text="联系方式" />
+                              <TextField fx:id="pat_tel_again" prefHeight="30.0" prefWidth="150.0" />
+                              <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#OnEditPatAgain" prefHeight="30.0" prefWidth="80.0" text="修改" />
+                              <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#OnEditCancelPat" prefHeight="31.0" prefWidth="80.0" text="取消" />
+                           </children>
+                        </HBox>
+                        <Pane fx:id="pat_func_pane" layoutX="21.0" layoutY="8.0" prefHeight="70.0" prefWidth="846.0">
+                           <children>
+                              <Button layoutX="301.0" layoutY="15.0" mnemonicParsing="false" onAction="#OnClickEditPat" style="-fx-background-color: rgb(247,247,247); -fx-border-color: #498dc5;" text="修改信息" textFill="#498dc5">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Button>
+                              <TextField fx:id="pat_text" layoutX="520.0" layoutY="21.0" prefHeight="30.0" prefWidth="227.0" promptText="卡号/姓名/联系方式" />
+                              <Button layoutX="1077.0" layoutY="16.0" mnemonicParsing="false" onAction="#OnSearchPat" style="-fx-background-color: rgb(247,247,247); -fx-border-color: #498dc5;" text="查询" textFill="#498dc5">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="45.0" layoutY="15.0" mnemonicParsing="false" onAction="#OnDelPat" style="-fx-background-color: rgb(247,247,247); -fx-border-color: #498dc5;" text="注销患者" textFill="#498dc5">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="edit_pat" layoutX="173.0" layoutY="15.0" mnemonicParsing="false" onAction="#OnFreshPat" style="-fx-background-color: rgb(247,247,247); -fx-border-color: #498dc5;" text="刷新列表" textFill="#498dc5">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Button>
+                              <ComboBox fx:id="pat_choice" layoutX="967.0" layoutY="21.0" prefHeight="30.0" prefWidth="95.0">
+                                  <items>
+                                      <FXCollections fx:factory="observableArrayList">
+                                          <String fx:value="卡号" />
+                                          <String fx:value="姓名" />
+                                          <String fx:value="联系方式" />
+                                      </FXCollections>
+                                  </items>
+                              </ComboBox>
+                           </children>
+                        </Pane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="record_info" text="病历查询">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="716.0" prefWidth="1071.0">
+                     <children>
+                        <TableView fx:id="table_mr" layoutY="90.0" prefHeight="342.0" prefWidth="864.0">
+                           <columns>
+                              <TableColumn fx:id="" prefWidth="75.0" text="病历编号" />
+                              <TableColumn prefWidth="150" text="创建日期" />
+                              <TableColumn prefWidth="120.0" text="科室" />
+                              <TableColumn prefWidth="100.0" text="就诊医生" />
+                              <TableColumn prefWidth="200.0" text="症状" />
+                              <TableColumn prefWidth="80.0" text="患者卡号" />
+                              <TableColumn prefWidth="200" text="诊断结果" />
+                              <TableColumn prefWidth="75.0" text="消费" />
+                              <TableColumn prefWidth="100.0" text="是否住院" />
+                              <TableColumn prefWidth="150.0" text="入院日期" />
+                              <TableColumn prefWidth="150.0" text="出院日期" />
+                           </columns>
+                        </TableView>
+                        <GridPane layoutX="14.0" layoutY="10.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <DatePicker visible="false" GridPane.columnIndex="2" />
+                           </children>
+                        </GridPane>
+                        <Button layoutX="44.0" layoutY="31.0" mnemonicParsing="false" onAction="#OnSearchMRBtn" style="-fx-background-color: rgb(247,247,247); -fx-border-color: #498dc5;" text="查询" textFill="#498dc5">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                        <ChoiceBox fx:id="mr_choice" layoutX="129.0" layoutY="36.0" prefHeight="30.0" prefWidth="108.0">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="病历编号" />
+                                    <String fx:value="就诊科室" />
+                                    <String fx:value="就诊医生" />
+                                    <String fx:value="患者卡号" />
+                                </FXCollections>
+                            </items>
+                        </ChoiceBox>
+                        <TextField fx:id="mrsearch" layoutX="253.0" layoutY="36.0" prefHeight="30.0" prefWidth="300.0" promptText="病历号/科室/医生姓名/患者卡号" />
+                        <Button layoutX="720.0" layoutY="32.0" mnemonicParsing="false" onAction="#OnFreshMR" style="-fx-background-color: rgb(247,247,247); -fx-border-color: #498dc5;" text="刷新列表" textFill="#498dc5">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="药品信息">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="table_medicine" layoutY="86.0" prefHeight="350.0" prefWidth="864.0">
+                          <columns>
+                            <TableColumn prefWidth="125.0" text="药品编号" />
+                            <TableColumn prefWidth="300.0" text="药品名称" />
+                             <TableColumn prefWidth="100.0" text="药品单价" />
+                              <TableColumn prefWidth="150.0" text="药品分类" />
+                              <TableColumn prefWidth="150.0" text="库存" />
+                          </columns>
+                        </TableView>
+                        <Pane fx:id="med_func_pane" layoutX="6.0" layoutY="9.0" prefHeight="71.0" prefWidth="860.0">
+                           <children>
+                              <Button layoutX="40.0" layoutY="15.0" mnemonicParsing="false" onAction="#OnAddNewMedicine" style="-fx-background-color: rgb(247,247,247); -fx-border-color: #498dc5;" text="添加药品" textFill="#498dc5">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="175.0" layoutY="15.0" mnemonicParsing="false" onAction="#OnDelMed" style="-fx-background-color: rgb(247,247,247); -fx-border-color: #498dc5;" text="删除药品" textFill="#498dc5">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="311.0" layoutY="16.0" mnemonicParsing="false" onAction="#OnFreshMedicine" style="-fx-background-color: rgb(247,247,247); -fx-border-color: #498dc5;" text="刷新列表" textFill="#498dc5">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="446.0" layoutY="16.0" mnemonicParsing="false" onAction="#OnClickEditMedicine" style="-fx-background-color: rgb(247,247,247); -fx-border-color: #498dc5;" text="修改信息" textFill="#498dc5">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="search_medicine" layoutX="1121.0" layoutY="15.0" mnemonicParsing="false" onAction="#OnSearchMedicine" style="-fx-background-color: rgb(247,247,247); -fx-border-color: #498dc5;" text="查询" textFill="#498dc5">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Button>
+                              <ComboBox fx:id="medicine_combobox" layoutX="986.0" layoutY="21.0" onAction="#ChooseSort" prefHeight="30.0" prefWidth="118.0">
+                                  <items>
+                                      <FXCollections fx:factory="observableArrayList">
+                                          <String fx:value="药品编号" />
+                                          <String fx:value="药品名称" />
+                                          <String fx:value="分类" />
+                                      </FXCollections>
+                                  </items>
+                              </ComboBox>
+                              <TextField fx:id="medicine_text" layoutX="600.0" layoutY="21.0" promptText="药品编号/药品名称" />
+                              <CheckBox fx:id="chinese" layoutX="773.0" layoutY="25.0" mnemonicParsing="false" text="中成药" visible="false" />
+                              <CheckBox fx:id="western" layoutX="884.0" layoutY="26.0" mnemonicParsing="false" text="西药" visible="false" />
+                           </children>
+                        </Pane>
+                        <HBox fx:id="edit_medicine_pane" alignment="CENTER" prefHeight="73.0" prefWidth="860.0" spacing="20.0" visible="false">
+                           <children>
+                              <Label minWidth="-Infinity" prefHeight="30.0" prefWidth="50.0" text="药品名称" />
+                              <TextField fx:id="med_name_edit" prefHeight="30.0" prefWidth="175.0" />
+                              <Label minWidth="-Infinity" prefHeight="30.0" prefWidth="50.0" text="药品单价" />
+                              <TextField fx:id="med_price_edit" prefHeight="30.0" prefWidth="120.0" />
+                              <Label minWidth="-Infinity" prefHeight="30.0" prefWidth="50.0" text="药品分类" />
+                              <ComboBox fx:id="med_sort_edit" prefHeight="30.0" prefWidth="100.0">
+                                  <items>
+                                      <FXCollections fx:factory="observableArrayList">
+                                          <String fx:value="中成药" />
+                                          <String fx:value="西药" />
+                                      </FXCollections>
+                                  </items>
+                              </ComboBox>
+                              <Label minWidth="-Infinity" prefHeight="30.0" prefWidth="50.0" text="药品库存" />
+                              <Spinner fx:id="med_store_edit" editable="true" max="9999" min="1" prefHeight="30.0" prefWidth="100.0" />
+                              <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#OnOkEditMed" prefHeight="30.0" prefWidth="80.0" text="修改" />
+                              <Button minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" text="取消" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+      <Pane fx:id="admin_manage_pane" layoutX="213.0" layoutY="260.0" prefHeight="460.0" prefWidth="867.0">
+         <children>
+            <GridPane fx:id="add_pane" layoutX="200.0" layoutY="56.0" prefHeight="403.0" prefWidth="591.0" visible="false">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="308.0" minWidth="10.0" prefWidth="248.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="399.0" minWidth="10.0" prefWidth="399.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="                       账号">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Label>
+                  <Label text="                       密码" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Label>
+                  <TextField fx:id="new_admin_account" promptText="请输入十一位以内数字" GridPane.columnIndex="1" />
+                  <PasswordField fx:id="new_admin_pwd" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button fx:id="new_admin_add" mnemonicParsing="false" onAction="#OnAddNewAdmin" text="确认添加" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Button>
+               </children>
+            </GridPane>
+            <Pane fx:id="changeandview_pane" layoutX="153.0" layoutY="1.0" prefHeight="460.0" prefWidth="676.0">
+               <children>
+                  <TableView fx:id="admin_list" layoutX="123.0" prefHeight="460.0" prefWidth="431.0">
+                    <columns>
+                      <TableColumn prefWidth="191.5999755859375" text="账号" />
+                        <TableColumn prefWidth="239.60003662109375" text="密码" />
+                    </columns>
+                  </TableView>
+               </children>
+            </Pane>
+            <GridPane fx:id="change_pwd_pane" alignment="CENTER" layoutX="300.0" prefHeight="560.0" prefWidth="602.0" visible="false">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <PasswordField fx:id="new_pwd" promptText="请输入新密码" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label text="当前账号">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Label>
+                  <Label fx:id="admin_id" GridPane.columnIndex="1" />
+                  <Label text="原始密码" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Label>
+                  <TextField fx:id="old_pwd" promptText="请输入原始密码" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label text="新密码" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Label>
+                  <Button fx:id="changepwd_admin_ok" mnemonicParsing="false" onAction="#OnOkChangePwd" text="确认" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Button>
+                  <Button fx:id="add_admin_cancel" mnemonicParsing="false" onAction="#OnCancelAdmin" text="取消" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Button>
+               </children>
+            </GridPane>
+            <GridPane fx:id="admin_func_pane" layoutX="33.0" layoutY="30.0" prefHeight="403.0" prefWidth="252.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="pwd_change" mnemonicParsing="false" onAction="#OnChangePwd" style="-fx-background-color: rgb(247,247,247); -fx-border-color: #666666;" text="修改密码" textFill="#666666">
+                     <font>
+                        <Font size="22.0" />
+                     </font></Button>
+                  <Button fx:id="admin_add" mnemonicParsing="false" onAction="#OnAddAdmin" style="-fx-background-color: rgb(247,247,247); -fx-border-color: #666666;" text="添加管理员" textFill="#666666" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="22.0" />
+                     </font></Button>
+                  <Button fx:id="admin_view" mnemonicParsing="false" onAction="#OnViewAdmin" style="-fx-background-color: rgb(247,247,247); -fx-border-color: #666666;" text="查看管理员" textFill="#666666" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="22.0" />
+                     </font></Button>
+                  <Button fx:id="admin_del" mnemonicParsing="false" onAction="#OnDelAdmin" style="-fx-background-color: rgb(247,247,247); -fx-border-color: #666666;" text="注销账号" textFill="#666666" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="22.0" />
+                     </font></Button>
+                  <Button fx:id="admin_exit" mnemonicParsing="false" onAction="#OnExitAdmin" style="-fx-background-color: rgb(247,247,247); -fx-border-color: #666666;" text="退出账号" textFill="#666666" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="22.0" />
+                     </font></Button>
+               </children>
+            </GridPane>
+         </children>
+      </Pane>
+      <GridPane fx:id="systemsetting_pane" alignment="CENTER" layoutX="325.0" layoutY="275.0" prefHeight="436.0" prefWidth="669.0" visible="false">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button mnemonicParsing="false" onAction="#OnInitDataBase" prefHeight="34.0" prefWidth="669.0" style="-fx-background-color: rgb(253,253,253); -fx-border-color: #666666; -fx-border-radius: 5px;" text="初  始  化  数  据  库" textAlignment="JUSTIFY" textFill="#666666">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button lineSpacing="20.0" mnemonicParsing="false" onAction="#OnRecoverDatabase" prefHeight="34.0" prefWidth="669.0" style="-fx-background-color: rgb(253,253,253); -fx-border-color: #666666; -fx-border-radius: 5px;" text="数  据  库  备  份  与  修  复" textFill="#666666" GridPane.rowIndex="1">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="669.0" style="-fx-background-color: rgb(253,253,253); -fx-border-color: #666666; -fx-border-radius: 5px;" text="基  础  信  息  设  置" textFill="#666666" GridPane.rowIndex="3">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#OnLookHospital" prefHeight="34.0" prefWidth="669.0" style="-fx-background-color: rgb(253,253,253); -fx-border-color: #666666; -fx-border-radius: 5px;" text="查  看  医  院  信  息" textFill="#666666" GridPane.rowIndex="2">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#OnLookHowToUse" prefHeight="34.0" prefWidth="669.0" style="-fx-background-color: rgb(253,253,253); -fx-border-color: #666666; -fx-border-radius: 5px;" text="软  件  使  用  说  明" textFill="#666666" GridPane.rowIndex="4">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="advice" mnemonicParsing="false" onAction="#OnGiveAdvice" prefHeight="34.0" prefWidth="669.0" style="-fx-background-color: rgb(253,253,253); -fx-border-color: #666666; -fx-border-radius: 5px;" text="使  用  意  见  反  馈" textFill="#666666" GridPane.rowIndex="5">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </GridPane>
+      <TabPane fx:id="chart_pane" layoutX="220.0" layoutY="260.0" prefHeight="451.0" prefWidth="860.0" tabClosingPolicy="UNAVAILABLE" visible="false">
+         <tabs>
+            <Tab text="药品销量">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <PieChart fx:id="medPieChart" layoutX="327.0" layoutY="147.0" prefHeight="451.0" prefWidth="574.0" />
+                        <ListView fx:id="medicineList" layoutX="36.0" layoutY="85.0" prefHeight="493.0" prefWidth="200.0" />
+                        <Button layoutX="263.0" layoutY="85.0" mnemonicParsing="false" onMouseClicked="#addMedicine" text="添加药品" />
+                        <ComboBox fx:id="chooseMedicine" layoutX="160.0" layoutY="40.0" prefWidth="150.0" />
+                        <Label layoutX="36.0" layoutY="40.0" text="选择添加药品">
+                           <font>
+                              <Font name="Calibri" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="437.0" layoutY="37.0" text="选择查看方式">
+                           <font>
+                              <Font name="Calibri" size="18.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="chooseMethod" layoutX="577.0" layoutY="37.0" prefWidth="150.0" />
+                        <Button layoutX="263.0" layoutY="130.0" mnemonicParsing="false" onMouseClicked="#deleteMedicine" text="删除药品" />
+                        <Button layoutX="772.0" layoutY="37.0" mnemonicParsing="false" onMouseClicked="#medQuery" text="查询" />
+                        <BarChart fx:id="medBarChart" layoutX="499.0" layoutY="154.0" prefHeight="437.0" prefWidth="231.0">
+                           <xAxis>
+                              <CategoryAxis side="BOTTOM" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis side="LEFT" />
+                           </yAxis>
+                        </BarChart>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="各科室就诊数">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="46.0" layoutY="41.0" text="选择添加科室">
+                           <font>
+                              <Font name="Calibri" size="18.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="chooseDepartment" layoutX="181.0" layoutY="40.0" prefWidth="150.0" />
+                        <ListView fx:id="departmentList" layoutX="46.0" layoutY="91.0" prefHeight="493.0" prefWidth="200.0" />
+                        <Button layoutX="267.0" layoutY="91.0" mnemonicParsing="false" onMouseClicked="#addDepartment" text="添加科室" />
+                        <Button layoutX="267.0" layoutY="146.0" mnemonicParsing="false" onMouseClicked="#deleteDepartment" text="删除科室" />
+                        <ComboBox fx:id="chooseMethod1" layoutX="579.0" layoutY="39.0" prefWidth="150.0" />
+                        <Label layoutX="435.0" layoutY="40.0" text="选择查看方式">
+                           <font>
+                              <Font name="Calibri" size="18.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="777.0" layoutY="39.0" mnemonicParsing="false" onMouseClicked="#depQuery" text="查询" />
+                        <PieChart fx:id="depPieChart" layoutX="376.0" layoutY="170.0" />
+                        <BarChart fx:id="depBarChart" layoutX="516.0" layoutY="169.0" prefHeight="399.0" prefWidth="252.0">
+                           <xAxis>
+                              <CategoryAxis side="BOTTOM" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis side="LEFT" />
+                           </yAxis>
+                        </BarChart>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+      <ImageView fitHeight="257.0" fitWidth="446.0" layoutX="-33.0" layoutY="-31.0">
+         <image>
+            <Image url="@../image/title.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

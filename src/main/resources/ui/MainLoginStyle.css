@@ -1,0 +1,37 @@
+#MainLogPane {
+    -fx-background-image: url("/image/MainLoginBackground.PNG");
+}
+.button{
+    -fx-text-fill: white;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#58bd5f, rgb(88, 189, 95));
+    -fx-effect: dropshadow( three-pass-box , rgba(234, 234, 234, 0.45), 5, 0.0 , 0 , 1 );
+    -fx-border-radius:10px 40px 40px 10px;
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
+#docLogPane{
+    -fx-background-image: url("/image/adminpg2.png");
+}
+#patLogPat{
+    -fx-background-image: url("/image/adminpg2.png");
+}
+#admitPane{
+    -fx-background-image: url("/image/adminpg2.png");
+}
+#patRegisterPane{
+    -fx-background-image: url("/image/adminpg2.png");
+}
+#PatChoosePane{
+    -fx-background-color: #ccffff;
+}
+#PatAppPAne{
+    -fx-background-color: #ccffff;
+}
+#patRechargePane{
+    -fx-background-color: #ccffff;
+}
+
