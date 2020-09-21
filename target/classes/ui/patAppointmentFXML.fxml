@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.patAppoinmentController">
+<AnchorPane fx:id="patAppointmentPane" prefHeight="720.0" prefWidth="1080.0" stylesheets="@patCss.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.patAppoinmentController">
    <children>
       <Label layoutX="468.0" layoutY="55.0" text="预约挂号">
          <font>

@@ -322,7 +322,7 @@ public class adminManageController {
 
     public void OnLookHospital(ActionEvent actionEvent){
         try {
-            Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler http://www.fjxiehe.com/article/single.jsp?mid=185&parentmid=184");
+            Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler https://www.xiangya.com.cn/");
         } catch (Exception e) {
             e.printStackTrace() ;
         }

@@ -34,7 +34,7 @@
       <Button layoutX="201.0" layoutY="478.0" mnemonicParsing="false" onAction="#enterDocLogin" prefHeight="35.0" prefWidth="99.0" text="医生登录" />
       <Button fx:id="patLogin" layoutX="491.0" layoutY="478.0" mnemonicParsing="false" onMouseClicked="#toPatLogin" prefHeight="35.0" prefWidth="99.0" text="患者登录" />
       <Button fx:id="adminLogin" layoutX="781.0" layoutY="478.0" mnemonicParsing="false" onAction="#enterAdminLogin" prefHeight="35.0" prefWidth="99.0" text="管理员登录" />
-      <ImageView fitHeight="229.0" fitWidth="410.0" layoutX="670.0" layoutY="-30.0">
+      <ImageView fitHeight="240.0" fitWidth="429.0" layoutX="651.0" layoutY="-30.0">
          <image>
             <Image url="@../image/title.png" />
          </image>
