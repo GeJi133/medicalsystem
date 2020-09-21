@@ -17,8 +17,8 @@ public class alipay {
         String WIDsubject = "patient recharge";
         System.out.println (recharge.getAmount ());
         System.out.println (String.valueOf (recharge.getAmount ()));
-        String WIDtotal_amount = String.valueOf (recharge.getAmount ());
-        String WIDbody = String.valueOf (recharge.getRid ());
+        String WIDtotal_amount =String.valueOf (recharge.getAmount ()) ;
+        String WIDbody = String.valueOf (recharge.getAmount ());
         String passback_params2=String.valueOf (recharge.getRid ());
 
         String payables = WIDout_trade_no;
@@ -43,13 +43,15 @@ public class alipay {
         String out_trade_no = sdf.format(new Date ());
 
         // 付款金额，必填
-        String total_amount = payables.replace(",", "");
-        alipayRequest.setBizContent("{\"out_trade_no\":\"" + out_trade_no + "\"," +
-                "\"total_amount\":\"" + total_amount + "\"," +
+        String total_amount = total_fee.replace(",", "");
+        String biz_content="{\"out_trade_no\":\"" + out_trade_no + "\"," +
+                "\"total_amount\":\"" + total_fee + "\"," +
                 "\"subject\":\"" + subject + "\"," +
                 "\"body\":\"" + body + "\","+
                 "\"passback_params\":\""+passback_params2+"\"," +
-                "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
+                "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}";
+        alipayRequest.setBizContent(biz_content);
+        System.out.println ("发送参数"+biz_content);
 
         // 请求
         String result = alipayClient.pageExecute(alipayRequest).getBody();

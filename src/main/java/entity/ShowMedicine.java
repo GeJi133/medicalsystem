@@ -8,6 +8,24 @@ public class ShowMedicine {
     private Label useWay;
     private Label amount;
     private Label price;
+    private Label dosage;
+    private Label frequency;
+
+    public Label getDosage() {
+        return dosage;
+    }
+
+    public void setDosage(Label dosage) {
+        this.dosage = dosage;
+    }
+
+    public Label getFrequency() {
+        return frequency;
+    }
+
+    public void setFrequency(Label frequency) {
+        this.frequency = frequency;
+    }
 
     public Label getMedName() {
         return medName;

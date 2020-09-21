@@ -4,18 +4,37 @@ public class MedicineList {
     private int medicineListNumber;
     private int medicalRecordsNumber;
     private int medicineNumber;
-    private String medicineAmountl;
+    private int medicineAmountl;
     private String medicineUsage;
+    private int medicineDosage;
+    private int medicineFrequency;
 
     public MedicineList(){}
 
-    public MedicineList(int medicineListNumber,int medicalRecordsNumber,int medicineNumber,String medicineAmountl,String medicineUsage){
+    public MedicineList(int medicineListNumber,int medicalRecordsNumber,int medicineNumber,int medicineAmountl,String medicineUsage){
         this.medicineListNumber=medicineListNumber;
         this.medicalRecordsNumber=medicalRecordsNumber;
         this.medicineNumber=medicineNumber;
         this.medicineAmountl=medicineAmountl;
         this.medicineUsage=medicineUsage;
     }
+
+    public int getMedicineDosage() {
+        return medicineDosage;
+    }
+
+    public void setMedicineDosage(int medicineDosage) {
+        this.medicineDosage = medicineDosage;
+    }
+
+    public int getMedicineFrequency() {
+        return medicineFrequency;
+    }
+
+    public void setMedicineFrequency(int medicineFrequency) {
+        this.medicineFrequency = medicineFrequency;
+    }
+
     public int getMedicineListNumber() {
         return medicineListNumber;
     }
@@ -40,11 +59,11 @@ public class MedicineList {
         this.medicineNumber = medicineNumber;
     }
 
-    public String getMedicineAmountl() {
+    public int getMedicineAmountl() {
         return medicineAmountl;
     }
 
-    public void setMedicineAmountl(String medicineAmountl) {
+    public void setMedicineAmountl(int medicineAmountl) {
         this.medicineAmountl = medicineAmountl;
     }
 

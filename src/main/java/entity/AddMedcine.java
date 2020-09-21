@@ -38,9 +38,28 @@ public class AddMedcine {
         this.price = price;
     }
 
+    public ComboBox getDosage() {
+        return dosage;
+    }
+
+    public void setDosage(ComboBox dosage) {
+        this.dosage = dosage;
+    }
+
+    public ComboBox getFrequency() {
+        return frequency;
+    }
+
+    public void setFrequency(ComboBox frequency) {
+        this.frequency = frequency;
+    }
+
+
     private ComboBox medName;
     private TextField useWay;
     private ComboBox amount;
     private Label price;
+    private ComboBox dosage;
+    private ComboBox frequency;
 
 }

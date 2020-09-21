@@ -29,6 +29,7 @@ import java.util.List;
 
 public class MainDocController {
 
+
     @FXML
     private Pane addSucPane;
     @FXML
@@ -106,6 +107,10 @@ public class MainDocController {
     @FXML
     private TableColumn<AddMedcine, ComboBox> amountCol;
     @FXML
+    private TableColumn<AddMedcine, ComboBox> dosageCol;
+    @FXML
+    private TableColumn<AddMedcine, ComboBox> frequencyCol;
+    @FXML
     private TableColumn<AddMedcine, Label> priceCol;
     @FXML
     private TableView<ShowMedicine> tabMedList;
@@ -116,7 +121,12 @@ public class MainDocController {
     @FXML
     private TableColumn<ShowMedicine, Label> amountCol2;
     @FXML
+    private TableColumn<ShowMedicine, Label> dosageCol2;
+    @FXML
+    private TableColumn<ShowMedicine, Label> frequencyCol2;
+    @FXML
     private TableColumn<ShowMedicine, Label> priceCol2;
+
     @FXML
     private Label costAll;
     @FXML
@@ -227,7 +237,13 @@ public class MainDocController {
 
             ComboBox comboBox1 = new ComboBox();
             ComboBox comboBox2 = new ComboBox();
+            ComboBox comboBox3=new ComboBox ();
+            ComboBox comboBox4=new ComboBox ();
             comboBox1.setPrefWidth(450);
+            comboBox1.setPrefWidth(450);
+            comboBox2.setPrefWidth(450);
+            comboBox3.setPrefWidth(450);
+            comboBox4.setPrefWidth(450);
 
             medicalrecordsinfo.setCurDoctor(doctorinfo.getDocName());
             medicalrecordsinfo.setCurDepartment(doctorinfo.getDocDepartment());
@@ -238,10 +254,21 @@ public class MainDocController {
             medicalrecordsinfo.setOutDate("无");
 
             ArrayList<String> chooseAmount = new ArrayList<>();
+            ArrayList<String> dosage= new ArrayList<> ();
+            ArrayList<String> frequency=new ArrayList<> ();
+
             for (int i = 1; i <= 8; i++) {
-                chooseAmount.add(String.valueOf(i) + "瓶/盒");
+                chooseAmount.add(String.valueOf (i));
+            }
+            for (int i = 1; i <= 5; i++) {
+                dosage.add(String.valueOf (i));
+            }
+            for (int i = 1; i <= 5; i++) {
+                frequency.add(String.valueOf (i));
             }
             comboBox2.getItems().addAll(chooseAmount);
+            comboBox3.getItems ().addAll (dosage);
+            comboBox4.getItems ().addAll (frequency);
 
             MedicalRecordDao medicalrecordsinfoDao = new MedicalRecordDao();
             pathisId2.setText(String.valueOf(medicalrecordsinfoDao.getMedRecTotal() + 1));
@@ -266,8 +293,6 @@ public class MainDocController {
                 pathis2.setText(illAll);
             }
 
-
-
             AutoCompleteComboBoxListener auto6=new AutoCompleteComboBoxListener(RoomId);
 
             MedicineInfoDao medicineInfoDao = new MedicineInfoDao();
@@ -280,6 +305,8 @@ public class MainDocController {
             AddMedcine addMedcine = new AddMedcine();
             addMedcine.setMedName(comboBox1);
             addMedcine.setAmount(comboBox2);
+            addMedcine.setDosage (comboBox3);
+            addMedcine.setFrequency (comboBox4);
             addMedcine.setUseWay(new TextField());
 
             //初始化价钱
@@ -297,8 +324,8 @@ public class MainDocController {
                 @Override
                 public void changed(ObservableValue observable, Object oldValue, Object newValue) {
                     double price;
-                    String strAmount = (String) comboBox2.getValue();
-                    double amountAll = strAmount.charAt(0) - '0';
+                    int strAmount = Integer.valueOf (comboBox2.getValue().toString ()) ;
+                    double amountAll = strAmount;
                     price = MedicineInfoDao.getMedcienPrice(medicineInfo1) * amountAll;
                     priceLabel.setText(String.valueOf(price));
                 }
@@ -312,6 +339,8 @@ public class MainDocController {
             priceCol.setCellValueFactory(new PropertyValueFactory<AddMedcine, Label>("price"));
             useWayCol.setCellValueFactory(new PropertyValueFactory<AddMedcine, TextField>("useWay"));
             amountCol.setCellValueFactory(new PropertyValueFactory<AddMedcine, ComboBox>("amount"));
+            dosageCol.setCellValueFactory (new PropertyValueFactory<AddMedcine,ComboBox> ("dosage"));
+            frequencyCol.setCellValueFactory (new PropertyValueFactory<AddMedcine,ComboBox> ("frequency"));
             medAllView.setItems(cellData);//将集合的值 存储到tableView里
 
 
@@ -353,7 +382,6 @@ public class MainDocController {
                     if (event.getClickCount() == 2 && (!row.isEmpty())) {
                         Medicalrecordsinfo medicalrecordsinfo1 = row.getItem();
                         try {
-
                             tabMedList.getItems().clear();
                             initcheckPat(medicalrecordsinfo1);
                             initTabMedList(medicalrecordsinfo1.getRecordId());
@@ -432,7 +460,7 @@ public class MainDocController {
         for (AddMedcine list : medData2) {
             MedicineList medicineList = new MedicineList();
             medicineList.setMedicineUsage(list.getUseWay().getText());
-            medicineList.setMedicineAmountl((String) list.getAmount().getValue());
+            medicineList.setMedicineAmountl( (Integer.valueOf ((String)list.getAmount().getValue())));
             medicineList.setMedicalRecordsNumber(medicalrecordsinfo.getRecordId());
             MedicineInfo medicineInfo = new MedicineInfo();
             medicineInfo.setMedName((String) list.getMedName().getValue());
@@ -451,7 +479,6 @@ public class MainDocController {
             MedicineListDao medicineListDao = new MedicineListDao();
             medicineListDao.addMedicineList(list);
         }
-
 
 
         if (inHosptalChoose.isSelected()) {
@@ -655,12 +682,30 @@ public class MainDocController {
     public void continueAdd(ActionEvent actionEvent) {
         ComboBox comboBox1 = new ComboBox();
         ComboBox comboBox2 = new ComboBox();
+        ComboBox comboBox3=new ComboBox ();
+        ComboBox comboBox4=new ComboBox ();
         comboBox1.setPrefWidth(450);
+        comboBox2.setPrefWidth(450);
+        comboBox3.setPrefWidth(450);
+        comboBox4.setPrefWidth(450);
+
+
         ArrayList<String> chooseAmount = new ArrayList<>();
+        ArrayList<String> dosage=new ArrayList<> ();
+        ArrayList<String> frequency=new ArrayList<> ();
         for (int i = 1; i <= 8; i++) {
-            chooseAmount.add(String.valueOf(i) + "瓶/盒");
+            chooseAmount.add(String.valueOf (i));
         }
+        for (int i = 1; i <= 8; i++) {
+            dosage.add(String.valueOf (i));
+        }
+        for (int i = 1; i <= 8; i++) {
+            frequency.add(String.valueOf (i));
+        }
+
         comboBox2.getItems().addAll(chooseAmount);
+        comboBox3.getItems ().addAll (dosage);
+        comboBox4.getItems ().addAll (frequency);
 
         MedicineInfoDao medicineInfoDao = new MedicineInfoDao();
         ArrayList<String> medlist = new ArrayList<>();
@@ -674,6 +719,9 @@ public class MainDocController {
         addMedcine.setMedName(comboBox1);
         addMedcine.setAmount(comboBox2);
         addMedcine.setUseWay(new TextField());
+        addMedcine.setDosage (comboBox3);
+        addMedcine.setFrequency (comboBox4);
+
         //初始化价钱
         Label priceLabel = new Label();
         MedicineInfo medicineInfo1 = new MedicineInfo();
@@ -684,6 +732,7 @@ public class MainDocController {
                 medicineInfo1.setMedName((String) comboBox1.getValue());
             }
         });
+
         comboBox2.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
 
             @Override
@@ -695,6 +744,13 @@ public class MainDocController {
                 priceLabel.setText(String.valueOf(price));
             }
         });
+//        comboBox3.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+//            @Override
+//
+//            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+//                medicineInfo1.setMedName((String) comboBox1.getValue());
+//            }
+//        });
         addMedcine.setPrice(priceLabel);
         medData.add(addMedcine);
         tabAddMedcine.setItems(medData);
@@ -714,14 +770,14 @@ public class MainDocController {
             for (int i = 0; i < 4; i++) {
                 labels[i] = new Label();
             }
-            int amount = list.getMedicineAmountl().charAt(0) - '0';
+            int amount = list.getMedicineAmountl();
             MedicineInfo medicineInfo = new MedicineInfo();
             medicineInfo.setMedName(MedicineInfoDao.getMedName(list.getMedicineNumber()));
             double price = MedicineInfoDao.getMedcienPrice(medicineInfo) * amount;
             cost += price;
             labels[0].setText(MedicineInfoDao.getMedName(list.getMedicineNumber()));
             labels[1].setText(list.getMedicineUsage());
-            labels[2].setText(list.getMedicineAmountl());
+            labels[2].setText(String.valueOf (list.getMedicineAmountl()));
             labels[3].setText(String.valueOf(price));
             ShowMedicine showMedicine = new ShowMedicine();
             showMedicine.setMedName(labels[0]);
@@ -750,7 +806,10 @@ public class MainDocController {
         medNameCol2.setCellValueFactory(new PropertyValueFactory<ShowMedicine, Label>("medName"));
         useWayCol2.setCellValueFactory(new PropertyValueFactory<ShowMedicine, Label>("useWay"));
         amountCol2.setCellValueFactory(new PropertyValueFactory<ShowMedicine, Label>("amount"));
+        dosageCol2.setCellValueFactory(new PropertyValueFactory<ShowMedicine, Label>("dosage"));
+        frequencyCol2.setCellValueFactory (new PropertyValueFactory<ShowMedicine,Label> ("frequency"));
         priceCol2.setCellValueFactory(new PropertyValueFactory<ShowMedicine, Label>("price"));
+
         tabMedList.setItems(medShowData);
     }
 

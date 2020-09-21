@@ -1,9 +1,7 @@
 package utils;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
- 
+import java.io.*;
+
 public class BufferedWriterDemo {
     public static void main(String[] args) {
         try {
@@ -15,5 +13,6 @@ public class BufferedWriterDemo {
             e.printStackTrace ();
         }
     }
+
 
 }

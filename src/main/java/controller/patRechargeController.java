@@ -58,13 +58,19 @@ public class patRechargeController extends Thread{
             String result=alipay.pay (recharge);
 
             ALipayFileChange.changeFile (result);
+
+
             System.out.println (result);
+            System.out.println ("-----------------读到的内容--------------------------------------------------");
+            ALipayFileChange.read ();
 
             Stage patStage = new Stage();
+            System.out.println ("开始读取文件");
             Parent root = FXMLLoader.load(getClass().getResource("/ui/alipay.fxml"));
             patStage.setTitle("html");
             patStage.setScene(new Scene(root, 600, 400));
             patStage.show();
+
 //            WaitForResponse wait=new WaitForResponse (recharge);
 
             ((Node) (mouseEvent.getSource())).getScene().getWindow().hide();
