@@ -13,8 +13,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-
 public class PatientInfoDao {
     public static void changePatInfo(PatientInfo patientInfo){
         Connection conn = BaseDao.getconn();

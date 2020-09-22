@@ -63,7 +63,7 @@ public class DoctorLoginByPhoneController {
                     control.initDocName(doctorinfo);
 
                     mainStage.setTitle("医生管理系统");
-                    mainStage.setScene(new Scene(root, 1500, 950));
+                    mainStage.setScene(new Scene(root, 1080, 720));
                     mainStage.show();
 
                 }
@@ -111,6 +111,23 @@ public class DoctorLoginByPhoneController {
             alert.setHeaderText ("验证码发送成功");
             alert.show ();
             vcode.clear ();
+        }
+    }
+
+    public void returnToMain(ActionEvent actionEvent) {
+
+        Stage adminManage = new Stage();
+
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/ui/MainLoginFXML.fxml"));
+            adminManage.setTitle("医疗管理系统");
+            adminManage.setScene(new Scene(root, 1080, 720));
+            adminManage.show();
+            ((Node) (actionEvent.getSource())).getScene().getWindow().hide();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
         }
     }
 }

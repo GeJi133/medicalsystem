@@ -16,7 +16,7 @@ public class MainLoginController {
         Stage docLoginStage=new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/ui/DoctorLoginFXML.fxml"));
         docLoginStage.setTitle("医生管理系统");
-        docLoginStage.setScene(new Scene(root, 600, 400));
+        docLoginStage.setScene(new Scene(root, 1080, 720));
         docLoginStage.show();
         new Main ().close(actionEvent);
     }
@@ -24,7 +24,7 @@ public class MainLoginController {
         Stage adminLoginStage=new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/ui/adminLogin.fxml"));
         adminLoginStage.setTitle("管理员登录");
-        adminLoginStage.setScene(new Scene(root, 600, 400));
+        adminLoginStage.setScene(new Scene(root, 1080, 720));
         adminLoginStage.show();
         ((Node) (actionEvent.getSource())).getScene().getWindow().hide();
     }
@@ -33,7 +33,7 @@ public class MainLoginController {
         Stage adminLoginStage=new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/ui/patLoginFXML.fxml"));
         adminLoginStage.setTitle("患者登录");
-        adminLoginStage.setScene(new Scene(root, 600, 400));
+        adminLoginStage.setScene(new Scene(root, 1080, 720));
         adminLoginStage.show();
         ((Node) (mouseEvent.getSource())).getScene().getWindow().hide();
     }

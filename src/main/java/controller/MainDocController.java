@@ -28,8 +28,6 @@ import java.util.Date;
 import java.util.List;
 
 public class MainDocController {
-
-
     @FXML
     private Pane addSucPane;
     @FXML
@@ -319,6 +317,7 @@ public class MainDocController {
                     medicineInfo1.setMedName((String) comboBox1.getValue());
                 }
             });
+
             comboBox2.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
 
                 @Override
@@ -331,10 +330,20 @@ public class MainDocController {
                 }
             });
 
+//            comboBox3.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+//                @Override
+//                public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+//                    double price;
+//                    int strAmount = Integer.valueOf (comboBox2.getValue().toString ()) ;
+//                    double amountAll = strAmount;
+//                    price = MedicineInfoDao.getMedcienPrice(medicineInfo1) * amountAll;
+//                    priceLabel.setText(String.valueOf(price));
+//                }
+//            });
+
             addMedcine.setPrice(priceLabel);
             medData.add(addMedcine);
             tabAddMedcine.setItems(medData);
-
             medNameCol.setCellValueFactory(new PropertyValueFactory<AddMedcine, ComboBox>("medName"));
             priceCol.setCellValueFactory(new PropertyValueFactory<AddMedcine, Label>("price"));
             useWayCol.setCellValueFactory(new PropertyValueFactory<AddMedcine, TextField>("useWay"));
@@ -429,7 +438,6 @@ public class MainDocController {
 
             });
 
-
             medAllPane.setVisible(true);
             addpane.setVisible(false);
             checkpatient.setVisible(false);
@@ -441,7 +449,6 @@ public class MainDocController {
             operationPane.setVisible(false);
             welcomePane.setVisible(false);
         }
-
     }
 
     public void addPatCon(ActionEvent actionEvent) throws ParseException {
@@ -451,6 +458,7 @@ public class MainDocController {
         medicalrecordsinfo.setPatDemands(patDemand.getText());
         medicalrecordsinfo.setResult(patResult.getText());
         medicalrecordsinfo.setRecordId(Integer.parseInt(pathisId2.getText()));
+
         MedicalRecordDao medicalrecordsinfoDao = new MedicalRecordDao();
 
         double costAll=0;
@@ -461,6 +469,8 @@ public class MainDocController {
             MedicineList medicineList = new MedicineList();
             medicineList.setMedicineUsage(list.getUseWay().getText());
             medicineList.setMedicineAmountl( (Integer.valueOf ((String)list.getAmount().getValue())));
+            medicineList.setMedicineDosage ((Integer.valueOf ((String)list.getDosage ().getValue())));
+            medicineList.setMedicineDosage ((Integer.valueOf ((String)list.getFrequency ().getValue())));
             medicineList.setMedicalRecordsNumber(medicalrecordsinfo.getRecordId());
             MedicineInfo medicineInfo = new MedicineInfo();
             medicineInfo.setMedName((String) list.getMedName().getValue());
@@ -470,6 +480,7 @@ public class MainDocController {
                 alert.show();
                 return;
             }
+
             medicineList.setMedicineNumber(new MedicineInfoDao().getMedicineId(medicineInfo));
             medicineLists.add(medicineList);
             costAll+=Double.parseDouble(list.getPrice().getText());

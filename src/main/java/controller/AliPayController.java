@@ -38,7 +38,7 @@ public class AliPayController  implements Initializable {
             Stage patStage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("/ui/patOptionFXML.fxml"));
             patStage.setTitle("患者选择界面");
-            patStage.setScene(new Scene (root, 600, 420));
+            patStage.setScene(new Scene (root, 1080, 720));
             patStage.show();
             ((Node) (actionEvent.getSource())).getScene().getWindow().hide();
         }catch (Exception e){

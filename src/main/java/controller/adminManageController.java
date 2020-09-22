@@ -322,7 +322,7 @@ public class adminManageController {
 
     public void OnLookHospital(ActionEvent actionEvent){
         try {
-            Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler http://www.fjxiehe.com/article/single.jsp?mid=185&parentmid=184");
+            Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler https://www.xiangya.com.cn/");
         } catch (Exception e) {
             e.printStackTrace() ;
         }
@@ -595,7 +595,7 @@ public class adminManageController {
             Stage mainLogin = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("/ui/MainLoginFXML.fxml"));
             mainLogin.setTitle("医疗管理信息系统");
-            mainLogin.setScene(new Scene(root, 900, 550));
+            mainLogin.setScene(new Scene(root, 1080, 720));
             mainLogin.show();
             ((Node) (actionEvent.getSource())).getScene().getWindow().hide();
         }
