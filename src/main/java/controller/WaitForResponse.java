@@ -31,7 +31,7 @@ public class WaitForResponse extends Thread {
             Stage patStage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("/ui/patRechargeFXML.fxml"));
             patStage.setTitle("患者选择界面");
-            patStage.setScene(new Scene (root, 600, 400));
+            patStage.setScene(new Scene (root, 1080, 720));
             patStage.show();
         }catch (Exception e){
             e.printStackTrace();

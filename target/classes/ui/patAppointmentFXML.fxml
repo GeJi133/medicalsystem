@@ -57,7 +57,7 @@
          </items>
       </ComboBox>
       <ComboBox fx:id="doctor" layoutX="444.0" layoutY="330.0" prefHeight="30.0" prefWidth="284.0" />
-      <Button fx:id="appConfirm" layoutX="342.0" layoutY="466.0" mnemonicParsing="false" onMouseClicked="#Confirm" text="确定挂号" />
-      <Button layoutX="693.0" layoutY="473.0" mnemonicParsing="false" onMouseClicked="#appRet" text="  返 回  " />
+      <Button fx:id="appConfirm" layoutX="342.0" layoutY="466.0" mnemonicParsing="false" onMouseClicked="#Confirm" prefHeight="34.0" prefWidth="120.0" text="确定挂号" />
+      <Button layoutX="693.0" layoutY="466.0" mnemonicParsing="false" onMouseClicked="#appRet" prefHeight="34.0" prefWidth="120.0" text="  返 回  " />
    </children>
 </AnchorPane>

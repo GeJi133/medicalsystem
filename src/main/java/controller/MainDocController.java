@@ -172,7 +172,7 @@ public class MainDocController {
     @FXML
     private ComboBox selectDep;
     @FXML private Label hospitalFare;
-    @FXML private Pane operationPane;
+//    @FXML private Pane operationPane;
     @FXML private TextField Name7;
     @FXML private TextField Id7;
     @FXML private TextField opName7;
@@ -207,7 +207,7 @@ public class MainDocController {
         medAllPane.setVisible(false);
         perInfoPane.setVisible(false);
         dutyPane.setVisible(false);
-        operationPane.setVisible(false);
+//        operationPane.setVisible(false);
         welcomePane.setVisible(false);
         patientId.clear();
     }
@@ -324,7 +324,7 @@ public class MainDocController {
             addSucPane.setVisible(false);
             perInfoPane.setVisible(false);
             dutyPane.setVisible(false);
-            operationPane.setVisible(false);
+//            operationPane.setVisible(false);
             welcomePane.setVisible(false);
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -410,7 +410,7 @@ public class MainDocController {
             addSucPane.setVisible(false);
             perInfoPane.setVisible(false);
             dutyPane.setVisible(false);
-            operationPane.setVisible(false);
+//            operationPane.setVisible(false);
             welcomePane.setVisible(false);
         }
 
@@ -483,7 +483,7 @@ public class MainDocController {
         medAllPane.setVisible(false);
         perInfoPane.setVisible(false);
         dutyPane.setVisible(false);
-        operationPane.setVisible(false);
+//        operationPane.setVisible(false);
         welcomePane.setVisible(false);
     }
 
@@ -582,7 +582,7 @@ public class MainDocController {
         medAllPane.setVisible(false);
         perInfoPane.setVisible(false);
         dutyPane.setVisible(false);
-        operationPane.setVisible(false);
+//        operationPane.setVisible(false);
         welcomePane.setVisible(true);
     }
 
@@ -773,7 +773,7 @@ public class MainDocController {
         medAllPane.setVisible(false);
         perInfoPane.setVisible(true);
         dutyPane.setVisible(false);
-        operationPane.setVisible(false);
+//        operationPane.setVisible(false);
         welcomePane.setVisible(false);
         confix.setVisible(false);
         conpwd.setVisible(false);
@@ -909,7 +909,7 @@ public class MainDocController {
         addSucPane.setVisible(false);
         medAllPane.setVisible(false);
         perInfoPane.setVisible(false);
-        operationPane.setVisible(false);
+//        operationPane.setVisible(false);
         welcomePane.setVisible(false);
 
     }
@@ -945,7 +945,7 @@ public class MainDocController {
         opName7.clear();
         shijian.setValue(null);
         sss.getSelectionModel().clearSelection();
-        operationPane.setVisible(true);
+//        operationPane.setVisible(true);
         dutyPane.setVisible(false);
         addpane.setVisible(false);
         checkpatient.setVisible(false);
@@ -957,16 +957,16 @@ public class MainDocController {
         welcomePane.setVisible(false);
     }
 
-    public void conOpration(ActionEvent actionEvent) {
-        Alert alert=new Alert(Alert.AlertType.INFORMATION);
-        alert.headerTextProperty().setValue("已为"+Name7.getText()+"安排手术成功！");
-        alert.show();
-        Name7.clear();
-        Id7.clear();
-        opName7.clear();
-        welcomePane.setVisible(true);
-        operationPane.setVisible(false);
-    }
+//    public void conOpration(ActionEvent actionEvent) {
+//        Alert alert=new Alert(Alert.AlertType.INFORMATION);
+//        alert.headerTextProperty().setValue("已为"+Name7.getText()+"安排手术成功！");
+//        alert.show();
+//        Name7.clear();
+//        Id7.clear();
+//        opName7.clear();
+//        welcomePane.setVisible(true);
+//        operationPane.setVisible(false);
+//    }
 
     public void Change(ActionEvent actionEvent) throws IOException {
         Stage primaryStage = new Stage();
