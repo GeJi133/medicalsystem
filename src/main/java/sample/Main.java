@@ -31,7 +31,6 @@ public class Main extends Application {
         primaryStage.setTitle("医疗管理系统");
         primaryStage.show();
 
-
         //发送post请求
 //        Map<String,String> params=new HashMap<String, String> ();
 //        String biz_content= "{&quot;out_trade_no&quot;:&quot;20200917100234779&quot;,&quot;total_amount&quot;:&quot;5&quot;,&quot;subject&quot;:&quot;String.valueOf (order.getOrderId ())&quot;,&quot;body&quot;:&quot;order.getOrderDate ().toString ()&quot;,&quot;passback_params&quot;:&quot;33ECFEF918DB62F08D907076B4CDA963&quot;,&quot;product_code&quot;:&quot;FAST_INSTANT_TRADE_PAY&quot;}";

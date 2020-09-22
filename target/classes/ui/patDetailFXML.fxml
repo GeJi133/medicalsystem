@@ -67,6 +67,25 @@
                   </AnchorPane>
             </content>
           </Tab>
+
+            <Tab  fx:id="appRecords" text="历史预约">
+                <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <children>
+                            <TableView fx:id="appTable" layoutX="-3.0" layoutY="-2.0" prefHeight="270.0" prefWidth="800.0">
+                                <columns>
+                                    <TableColumn fx:id="appointDate" prefWidth="200.0" resizable="false" sortType="DESCENDING" text="预约时间" />
+                                    <TableColumn fx:id="appointDec" prefWidth="200.0" text="预约科室" />
+                                    <TableColumn fx:id="appointDoc"  prefWidth="200.0" text="预约医生" />
+                                    <TableColumn fx:id="appointMoney" prefWidth="200.0" text="预约金额" />
+                                </columns>
+                            </TableView>
+                            <Button layoutX="334.0" layoutY="288.0" mnemonicParsing="false" onMouseClicked="#printHistoryRecords" prefHeight="55.0" prefWidth="136.0" text="打印表单" />
+                        </children>
+                    </AnchorPane>
+                </content>
+            </Tab>
+
         </tabs>
       </TabPane>
    </children>

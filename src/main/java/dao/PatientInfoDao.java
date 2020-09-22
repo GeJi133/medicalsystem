@@ -1,6 +1,9 @@
 package dao;
 
 import controller.DoctorLoginController;
+
+import entity.AppointHistory;
+
 import entity.Doctorinfo;
 import entity.Medicalrecordsinfo;
 import entity.PatientInfo;
@@ -13,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 public class PatientInfoDao {
     public static void changePatInfo(PatientInfo patientInfo){
         Connection conn = BaseDao.getconn();
@@ -281,6 +285,35 @@ public class PatientInfoDao {
         }
         return patientinfo;
     }
+
+    //获取历史预约
+    public List<AppointHistory> selectAppointHistory(int patId){
+        List<AppointHistory> history = new ArrayList<AppointHistory>();
+        Connection conn = BaseDao.getconn();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            String sql = "select * from appointhistory where patId2 = ?";
+            ps= conn.prepareStatement(sql);
+            ps.setInt(1,patId);
+            rs = ps.executeQuery();
+            while (rs.next()){
+                AppointHistory temp = new AppointHistory();
+                temp.setAppDate(rs.getString("appDate"));
+                temp.setAppDec(rs.getString("appDec"));
+                temp.setAppDoc(rs.getString("appDoc"));
+                temp.setAppMoney(rs.getInt("appMoney"));
+                history.add(temp);
+                System.out.print(temp);
+            }
+            BaseDao.closeAll(conn,ps,rs);
+            return history;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     //获取消费记录
     public List<Medicalrecordsinfo> selectPaymentRecords(int patId){

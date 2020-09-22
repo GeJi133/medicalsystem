@@ -5,6 +5,7 @@ import entity.AppointHistory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -18,6 +19,7 @@ public class AppointHistoryDao {
         return ans;
     }
 
+
     public void insertAppoint(AppointHistory appointHistory){
         Connection conn = BaseDao.getconn();
         SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
@@ -27,6 +29,7 @@ public class AppointHistoryDao {
         ResultSet rs = null;
         try {
             String sql = tr("insert into appointhistory (appdate,appdec,appdoc,appmoney,patId2,appointDate,appointTime) values ('%','%','%','%','%','%','%')",appointHistory.getAppDate(),appointHistory.getAppDec(),appointHistory.getAppDoc(),String.valueOf(appointHistory.getAppMoney()),String.valueOf(appointHistory.getPatId2()),appointHistory.getAppointDate (),appointHistory.getAppointTime ());
+
            ps = conn.prepareStatement(sql);
            ps.executeUpdate();
         }catch (Exception e){
