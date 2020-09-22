@@ -13,46 +13,54 @@
 
 <AnchorPane fx:id="PatChoosePane" prefHeight="720.0" prefWidth="1080.0" stylesheets="@MainLoginStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.patOptionController">
    <children>
-      <Button layoutX="197.0" layoutY="489.0" mnemonicParsing="false" onMouseClicked="#toPatInfo" prefHeight="35.0" prefWidth="99.0" text="基本信息">
+      <Button layoutX="186.0" layoutY="206.0" mnemonicParsing="false" onMouseClicked="#toPatInfo" prefHeight="35.0" prefWidth="99.0" text="基本信息">
          <font>
             <Font name="Calibri" size="14.0" />
          </font></Button>
-      <Button layoutX="383.0" layoutY="281.0" mnemonicParsing="false" onMouseClicked="#toPatAppoinment" prefHeight="35.0" prefWidth="99.0" text="预约挂号">
+      <Button layoutX="363.0" layoutY="206.0" mnemonicParsing="false" onMouseClicked="#toPatAppoinment" prefHeight="35.0" prefWidth="99.0" text="预约挂号">
          <font>
             <Font name="Calibri" size="14.0" />
          </font></Button>
-      <Button layoutX="763.0" layoutY="281.0" mnemonicParsing="false" onMouseClicked="#toPatRecharge" prefHeight="35.0" prefWidth="99.0" text="  充  值  ">
+      <Button layoutX="751.0" layoutY="206.0" mnemonicParsing="false" onMouseClicked="#toPatRecharge" prefHeight="35.0" prefWidth="99.0" text="  充  值  ">
          <font>
             <Font name="Calibri" size="14.0" />
          </font></Button>
-      <Button layoutX="593.0" layoutY="489.0" mnemonicParsing="false" onMouseClicked="#toPatDetailInfo" prefHeight="35.0" prefWidth="99.0" text="明细查询">
+      <Button layoutX="570.0" layoutY="206.0" mnemonicParsing="false" onMouseClicked="#toPatDetailInfo" prefHeight="35.0" prefWidth="99.0" text="明细查询">
          <font>
             <Font name="Calibri" size="14.0" />
          </font></Button>
-      <ImageView fitHeight="177.0" fitWidth="195.0" layoutX="733.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="103.0" fitWidth="111.0" layoutX="749.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/deposit.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="158.0" fitWidth="158.0" layoutX="353.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="80.0" fitWidth="124.0" layoutX="363.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/patRegisteredIcon.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="158.0" fitWidth="158.0" layoutX="167.0" layoutY="294.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="112.0" fitWidth="111.0" layoutX="180.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/patBasicalInfoIcon.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="181.0" fitWidth="177.0" layoutX="554.0" layoutY="294.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="103.0" fitWidth="129.0" layoutX="540.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/info.png" />
          </image>
       </ImageView>
-      <Button layoutX="812.0" layoutY="572.0" mnemonicParsing="false" onMouseClicked="#patLogout" prefHeight="35.0" prefWidth="99.0" text="注销账号">
+      <Button layoutX="770.0" layoutY="568.0" mnemonicParsing="false" onMouseClicked="#patLogout" prefHeight="35.0" prefWidth="99.0" text="注销账号">
          <font>
             <Font name="Calibri" size="14.0" />
          </font>
       </Button>
+      <TableView layoutX="167.0" layoutY="420.0" prefHeight="203.0" prefWidth="492.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="预约时间" />
+          <TableColumn prefWidth="75.0" text="预约科室" />
+            <TableColumn prefWidth="201.0" text="预约时间" />
+            <TableColumn prefWidth="140.0" text="预约状态" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

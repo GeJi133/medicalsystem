@@ -7,7 +7,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class AppointHistoryDao {
     public static String tr(String str, String... args) {
@@ -19,6 +21,35 @@ public class AppointHistoryDao {
         return ans;
     }
 
+    //获取历史预约
+    public List<AppointHistory> selectAppointByDepartment(String depName){
+        List<AppointHistory> history = new ArrayList<AppointHistory> ();
+        Connection conn = BaseDao.getconn();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            String sql = "select * from appointhistory where depName = ?";
+            ps= conn.prepareStatement(sql);
+            ps.setString (1,depName);
+            rs = ps.executeQuery();
+            while (rs.next()){
+                AppointHistory temp = new AppointHistory();
+                temp.setAppDate(rs.getString("appDate"));
+                temp.setAppDec(rs.getString("appDec"));
+                temp.setAppDoc(rs.getString("appDoc"));
+                temp.setAppMoney(rs.getInt("appMoney"));
+                temp.setAppointDate (String.valueOf (rs.getDate ("appointDate")));
+                temp.setAppointTime (rs.getString ("appointTime"));
+                history.add(temp);
+                System.out.print(temp);
+            }
+            BaseDao.closeAll(conn,ps,rs);
+            return history;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public void insertAppoint(AppointHistory appointHistory){
         Connection conn = BaseDao.getconn();
@@ -28,8 +59,7 @@ public class AppointHistoryDao {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            String sql = tr("insert into appointhistory (appdate,appdec,appdoc,appmoney,patId2,appointDate,appointTime) values ('%','%','%','%','%','%','%')",appointHistory.getAppDate(),appointHistory.getAppDec(),appointHistory.getAppDoc(),String.valueOf(appointHistory.getAppMoney()),String.valueOf(appointHistory.getPatId2()),appointHistory.getAppointDate (),appointHistory.getAppointTime ());
-
+            String sql = tr("insert into appointhistory (appdate,appdec,appdoc,appmoney,patId2,appointDate,appointTime,status) values ('%','%','%','%','%','%','%',%)",appointHistory.getAppDate(),appointHistory.getAppDec(),appointHistory.getAppDoc(),String.valueOf(appointHistory.getAppMoney()),String.valueOf(appointHistory.getPatId2()),appointHistory.getAppointDate (),appointHistory.getAppointTime (),"0");
            ps = conn.prepareStatement(sql);
            ps.executeUpdate();
         }catch (Exception e){
@@ -38,6 +68,7 @@ public class AppointHistoryDao {
             BaseDao.closeAll(conn,ps,rs);
         }
     }
+
     public int getAppointTotal() {
         int total = 0;
         Connection conn = BaseDao.getconn();

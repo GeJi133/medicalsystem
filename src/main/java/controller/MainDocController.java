@@ -971,6 +971,7 @@ public class MainDocController {
 
     public void checkDuty(ActionEvent actionEvent) {
 
+
         dutyPane.setVisible(true);
         addpane.setVisible(false);
         checkpatient.setVisible(false);
@@ -981,7 +982,6 @@ public class MainDocController {
         perInfoPane.setVisible(false);
         operationPane.setVisible(false);
         welcomePane.setVisible(false);
-
     }
 
     public void checkDutyBtn(ActionEvent actionEvent) {
