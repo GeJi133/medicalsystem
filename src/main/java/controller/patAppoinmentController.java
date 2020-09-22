@@ -12,17 +12,16 @@ import javafx.geometry.HPos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import javafx.util.StringConverter;
 
 import java.sql.Time;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -47,28 +46,36 @@ public class patAppoinmentController {
         String pattern = "yyyy-MM-dd";
 //        stage.setScene(scene);
         appointDate = new DatePicker();
-        StringConverter converter = new StringConverter<LocalDate>() {
-            DateTimeFormatter dateFormatter =
-                    DateTimeFormatter.ofPattern(pattern);
-            @Override
-            public String toString(LocalDate date) {
-                if (date != null) {
-                    return dateFormatter.format(date);
-                } else {
-                    return "";
-                }
-            }
-            @Override
-            public LocalDate fromString(String string) {
-                if (string != null && !string.isEmpty()) {
-                    return LocalDate.parse(string, dateFormatter);
-                } else {
-                    return null;
-                }
-            }
-        };
-        appointDate.setConverter(converter);
-        appointDate.setPromptText(pattern.toLowerCase());
+        appointDate.setValue(LocalDate.of(2019, 7, 25));
+        appointDate.setShowWeekNumbers(true);
+
+        // Factory to create Cell of DatePicker
+        Callback<DatePicker, DateCell> dayCellFactory = this.getDayCellFactory();
+        appointDate.setDayCellFactory(dayCellFactory);
+        System.out.println ("initUI");
+//
+//        StringConverter converter = new StringConverter<LocalDate>() {
+//            DateTimeFormatter dateFormatter =
+//                    DateTimeFormatter.ofPattern(pattern);
+//            @Override
+//            public String toString(LocalDate date) {
+//                if (date != null) {
+//                    return dateFormatter.format(date);
+//                } else {
+//                    return "";
+//                }
+//            }
+//            @Override
+//            public LocalDate fromString(String string) {
+//                if (string != null && !string.isEmpty()) {
+//                    return LocalDate.parse(string, dateFormatter);
+//                } else {
+//                    return null;
+//                }
+//            }
+//        };
+//        appointDate.setConverter(converter);
+//        appointDate.setPromptText(pattern.toLowerCase());
         GridPane gridPane = new GridPane();
         gridPane.setHgap(10);
         gridPane.setVgap(10);
@@ -150,4 +157,31 @@ public class patAppoinmentController {
         alert.setContentText("恭喜您，挂号成功!您的挂号费为20元，目前卡内余额为" + dcmFmt.format(deposit) + "元");
         alert.show();
     }
+
+
+    private Callback<DatePicker, DateCell> getDayCellFactory() {
+
+        final Callback<DatePicker, DateCell> dayCellFactory = new Callback<DatePicker, DateCell>() {
+
+            @Override
+            public DateCell call(final DatePicker datePicker) {
+                return new DateCell() {
+                    @Override
+                    public void updateItem(LocalDate item, boolean empty) {
+                        super.updateItem(item, empty);
+
+                        // Disable Monday, Tueday, Wednesday.
+                        if (item.getDayOfWeek() == DayOfWeek.MONDAY //
+                                || item.getDayOfWeek() == DayOfWeek.TUESDAY //
+                                || item.getDayOfWeek() == DayOfWeek.WEDNESDAY) {
+                            setDisable(true);
+                            setStyle("-fx-background-color: #ffc0cb;");
+                        }
+                    }
+                };
+            }
+        };
+        return dayCellFactory;
+    }
+
 }

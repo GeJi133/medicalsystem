@@ -614,7 +614,6 @@
                   <Button fx:id="exit" mnemonicParsing="false" onAction="#exitSys" prefHeight="70.0" prefWidth="253.0" text="退出系统" />
                </children>
             </VBox>
-
             <Pane fx:id="welcomePane" layoutX="243.0" layoutY="3.0" prefHeight="851.0" prefWidth="1256.0">
                <children>
                   <Label fx:id="welcomeLab" layoutX="317.0" layoutY="315.0" text="欢迎使用医疗管理系统">

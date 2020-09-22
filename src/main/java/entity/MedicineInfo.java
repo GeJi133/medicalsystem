@@ -7,6 +7,15 @@ public class MedicineInfo {
     private double medPrice;
     private String medCategory;
     private int medStore;
+    private  int medAmount;
+
+    public int getMedAmount() {
+        return medAmount;
+    }
+
+    public void setMedAmount(int medAmount) {
+        this.medAmount = medAmount;
+    }
 
     public MedicineInfo(){}
 

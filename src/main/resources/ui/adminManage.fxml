@@ -4,7 +4,6 @@
 <?import javafx.collections.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -575,8 +574,8 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <PieChart fx:id="medPieChart" layoutX="327.0" layoutY="147.0" prefHeight="451.0" prefWidth="574.0" />
-                        <ListView fx:id="medicineList" layoutX="36.0" layoutY="85.0" prefHeight="493.0" prefWidth="200.0" />
+                        <PieChart fx:id="medPieChart" layoutX="365.0" layoutY="70.0" prefHeight="341.0" prefWidth="417.0" />
+                        <ListView fx:id="medicineList" layoutX="36.0" layoutY="85.0" prefHeight="346.0" prefWidth="200.0" />
                         <Button layoutX="263.0" layoutY="85.0" mnemonicParsing="false" onMouseClicked="#addMedicine" text="添加药品" />
                         <ComboBox fx:id="chooseMedicine" layoutX="160.0" layoutY="40.0" prefWidth="150.0" />
                         <Label layoutX="36.0" layoutY="40.0" text="选择添加药品">
@@ -592,7 +591,7 @@
                         <ComboBox fx:id="chooseMethod" layoutX="577.0" layoutY="37.0" prefWidth="150.0" />
                         <Button layoutX="263.0" layoutY="130.0" mnemonicParsing="false" onMouseClicked="#deleteMedicine" text="删除药品" />
                         <Button layoutX="772.0" layoutY="37.0" mnemonicParsing="false" onMouseClicked="#medQuery" text="查询" />
-                        <BarChart fx:id="medBarChart" layoutX="499.0" layoutY="154.0" prefHeight="437.0" prefWidth="231.0">
+                        <BarChart fx:id="medBarChart" layoutX="499.0" layoutY="70.0" prefHeight="340.0" prefWidth="231.0">
                            <xAxis>
                               <CategoryAxis side="BOTTOM" />
                            </xAxis>
@@ -614,7 +613,7 @@
                            </font>
                         </Label>
                         <ComboBox fx:id="chooseDepartment" layoutX="181.0" layoutY="40.0" prefWidth="150.0" />
-                        <ListView fx:id="departmentList" layoutX="46.0" layoutY="91.0" prefHeight="493.0" prefWidth="200.0" />
+                        <ListView fx:id="departmentList" layoutX="36.0" layoutY="85.0" prefHeight="347.0" prefWidth="200.0" />
                         <Button layoutX="267.0" layoutY="91.0" mnemonicParsing="false" onMouseClicked="#addDepartment" text="添加科室" />
                         <Button layoutX="267.0" layoutY="146.0" mnemonicParsing="false" onMouseClicked="#deleteDepartment" text="删除科室" />
                         <ComboBox fx:id="chooseMethod1" layoutX="579.0" layoutY="39.0" prefWidth="150.0" />
@@ -624,8 +623,8 @@
                            </font>
                         </Label>
                         <Button layoutX="777.0" layoutY="39.0" mnemonicParsing="false" onMouseClicked="#depQuery" text="查询" />
-                        <PieChart fx:id="depPieChart" layoutX="376.0" layoutY="170.0" />
-                        <BarChart fx:id="depBarChart" layoutX="516.0" layoutY="169.0" prefHeight="399.0" prefWidth="252.0">
+                        <PieChart fx:id="depPieChart" layoutX="365.0" layoutY="70.0" prefHeight="341.0" prefWidth="417.0" />
+                        <BarChart fx:id="depBarChart" layoutX="499.0" layoutY="70.0" prefHeight="340.0" prefWidth="252.0">
                            <xAxis>
                               <CategoryAxis side="BOTTOM" />
                            </xAxis>

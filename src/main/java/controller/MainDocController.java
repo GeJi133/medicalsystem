@@ -97,6 +97,17 @@ public class MainDocController {
     @FXML
     private TableColumn<Medicalrecordsinfo, String> dateCol;
     @FXML
+    private TableView<AppointHistory> medAllView2;
+//    @FXML
+//    private TableColumn<AppointHistory, Integer> medRecCol2;
+    @FXML
+    private TableColumn<AppointHistory, Integer> patIdCol2;
+    @FXML
+    private TableColumn<AppointHistory, String> PatNameCol2;
+    @FXML
+    private TableColumn<AppointHistory, String> dateCol2;
+
+    @FXML
     private TableView<AddMedcine> tabAddMedcine;
     @FXML
     private TableColumn<AddMedcine, ComboBox> medNameCol;
@@ -180,7 +191,7 @@ public class MainDocController {
     @FXML
     private ComboBox selectDep;
     @FXML private Label hospitalFare;
-    @FXML private Pane operationPane;
+//    @FXML private Pane operationPane;
     @FXML private TextField Name7;
     @FXML private TextField Id7;
     @FXML private TextField opName7;
@@ -191,6 +202,7 @@ public class MainDocController {
     @FXML private DatePicker shijian;
     List<String> bed= new ArrayList<String>();
     private final ObservableList<Medicalrecordsinfo> cellData = FXCollections.observableArrayList();
+    private final ObservableList<AppointHistory> AppointDate = FXCollections.observableArrayList();
     private final ObservableList<AddMedcine> medData = FXCollections.observableArrayList();
     private final ObservableList<ShowMedicine> medShowData = FXCollections.observableArrayList();
     private final ObservableList<WorkInfo> dutyData = FXCollections.observableArrayList();
@@ -207,17 +219,254 @@ public class MainDocController {
 
     public void AddPatient(ActionEvent actionEvent) {
 
+        inHosptalChoose.setSelected(false);
+        addpathis.setVisible(false);
         addpane.setVisible(true);
         checkpatient.setVisible(false);
         menupane.setVisible(false);
-        addpathis.setVisible(false);
+        inHospitalPane.setVisible(false);
         addSucPane.setVisible(false);
-        medAllPane.setVisible(false);
         perInfoPane.setVisible(false);
         dutyPane.setVisible(false);
-        operationPane.setVisible(false);
+//            operationPane.setVisible(false);
         welcomePane.setVisible(false);
-        patientId.clear();
+
+//            medCorId.getItems().clear();
+//            patCardID.getItems().clear();
+//            patName3.getItems().clear();
+//            medCorDate.getItems().clear();
+//            ArrayList<Medicalrecordsinfo> medicalrecordsinfos = new ArrayList<>();
+            ArrayList<AppointHistory> appointHistories=new ArrayList<> ();
+            AppointHistoryDao appointHistoryDao=new AppointHistoryDao ();
+
+//            medicalrecordsinfos = MedicalRecordDao.getMedicalRecords(doctorinfo);
+        appointHistories=appointHistoryDao.selectAppointByDepartment (doctorinfo.getDocDepartment ());
+        System.out.println ("department"+appointHistories.size ());
+            if (appointHistories.size() == 0) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.headerTextProperty().setValue("暂无预约患者");
+                alert.show();
+            } else {
+//            initcheckPat(medicalrecordsinfos.get(medicalrecordsinfos.size() - 1));
+                System.out.println ("有预约患者");
+                initAppointmentTable (appointHistories);
+
+
+                medAllView2.setRowFactory(tv -> {
+                    TableRow<AppointHistory> row = new TableRow<AppointHistory>();
+                    row.setOnMouseClicked(event -> {
+                        if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                            AppointHistory medicalrecordsinfo1 = row.getItem();
+                            System.out.println (medicalrecordsinfo1.toString ());
+                            System.out.println (medicalrecordsinfo1.getPatId2 ());
+
+//                                medAllPane.setVisible(true);
+//                                addpane.setVisible(false);
+//                                checkpatient.setVisible(false);
+//                                menupane.setVisible(true);
+//                                addpathis.setVisible(false);
+//                                addSucPane.setVisible(false);
+//                                perInfoPane.setVisible(false);
+//                                dutyPane.setVisible(false);
+////            operationPane.setVisible(false);
+//                                welcomePane.setVisible(false);
+
+                            try {
+                                getPatAppointment(String.valueOf (medicalrecordsinfo1.getPatId2 ()));
+                            } catch (IOException e) {
+                                e.printStackTrace ();
+                            }
+
+                        }
+                    });
+                    return row;
+                });
+                ArrayList<Integer> medid = new ArrayList<>();
+                medid = MedicalRecordDao.getRecordId(doctorinfo);
+                for (Integer list : medid) {
+                    medCorId.getItems().add(list);
+                }
+                AutoCompleteComboBoxListener auto1 = new AutoCompleteComboBoxListener<>(medCorId);
+
+                ArrayList<Integer> patid = new ArrayList<>();
+                patid = MedicalRecordDao.getPatId(doctorinfo);
+                for (Integer list : patid) {
+                    patCardID.getItems().add(list);
+                }
+                AutoCompleteComboBoxListener auto2 = new AutoCompleteComboBoxListener<>(patCardID);
+                ArrayList<String> patname = new ArrayList<>();
+                patname = PatientInfoDao.getPatName();
+                for (String list : patname) {
+                    patName3.getItems().add(list);
+                }
+                AutoCompleteComboBoxListener auto3 = new AutoCompleteComboBoxListener<>(patName3);
+                ArrayList<String> addDate = new ArrayList<>();
+                addDate = MedicalRecordDao.getCreateDate(doctorinfo);
+                for (String list : addDate) {
+                    medCorDate.getItems().add(list);
+                }
+                AutoCompleteComboBoxListener auto4 = new AutoCompleteComboBoxListener<>(medCorDate);
+
+                medCorDate.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+                    @Override
+                    public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+
+                    }
+
+                });
+
+
+            }
+    }
+    public void getPatAppointment(String patId) throws IOException {
+        PatientInfo patientInfo = new PatientInfo();
+        String strPatientId = patId;
+        patientInfo.setPatId(Integer.parseInt(strPatientId));
+        PatientInfoDao patinetInfoDao = new PatientInfoDao();
+        int count = patinetInfoDao.checkPatient(patientInfo);
+        if (count == 1) {
+            patDemand.clear();
+            patResult.clear();
+            isMenzhen.setSelected(false);
+            inHosptalChoose.setSelected(false);
+            tabAddMedcine.getItems().clear();
+
+            ComboBox comboBox1 = new ComboBox();
+            ComboBox comboBox2 = new ComboBox();
+            ComboBox comboBox3=new ComboBox ();
+            ComboBox comboBox4=new ComboBox ();
+            comboBox1.setPrefWidth(450);
+            comboBox1.setPrefWidth(450);
+            comboBox2.setPrefWidth(450);
+            comboBox3.setPrefWidth(450);
+            comboBox4.setPrefWidth(450);
+
+            medicalrecordsinfo.setCurDoctor(doctorinfo.getDocName());
+            medicalrecordsinfo.setCurDepartment(doctorinfo.getDocDepartment());
+            medicalrecordsinfo.setIsInHospital("否");
+            medicalrecordsinfo.setBedId("无");
+            medicalrecordsinfo.setRoomId("无");
+            medicalrecordsinfo.setInDate("无");
+            medicalrecordsinfo.setOutDate("无");
+
+            ArrayList<String> chooseAmount = new ArrayList<>();
+            ArrayList<String> dosage= new ArrayList<> ();
+            ArrayList<String> frequency=new ArrayList<> ();
+
+            for (int i = 1; i <= 8; i++) {
+                chooseAmount.add(String.valueOf (i));
+            }
+            for (int i = 1; i <= 5; i++) {
+                dosage.add(String.valueOf (i));
+            }
+            for (int i = 1; i <= 5; i++) {
+                frequency.add(String.valueOf (i));
+            }
+            comboBox2.getItems().addAll(chooseAmount);
+            comboBox3.getItems ().addAll (dosage);
+            comboBox4.getItems ().addAll (frequency);
+
+            MedicalRecordDao medicalrecordsinfoDao = new MedicalRecordDao();
+            pathisId2.setText(String.valueOf(medicalrecordsinfoDao.getMedRecTotal() + 1));
+            patientInfo = patinetInfoDao.fixAddPat(patientInfo);
+            patAge2.setText("年  龄： " + patientInfo.getPatAge());
+            patName2.setText("姓  名： " + patientInfo.getPatName());
+            patId2.setText(String.valueOf(patientInfo.getPatId()));
+            medicalrecordsinfo.setPatId1(patientInfo.getPatId());
+            patPhone2.setText("联系电话： " + patientInfo.getPatTel());
+            patSex2.setText("性  别： " + patientInfo.getPatGender());
+            ArrayList<String> illhis=new ArrayList<>();
+            illhis=MedicalRecordDao.getIllHis(patientInfo.getPatId());
+            if (illhis.size()==0){
+                pathis2.setText("无");
+            }
+            else{
+                String illAll="";
+                for (String list:illhis){
+                    illAll=illAll+list;
+                }
+                pathis2.setWrapText(true);
+                pathis2.setText(illAll);
+            }
+
+            AutoCompleteComboBoxListener auto6=new AutoCompleteComboBoxListener(RoomId);
+
+            MedicineInfoDao medicineInfoDao = new MedicineInfoDao();
+            ArrayList<String> medlist = new ArrayList<>();
+            medlist = medicineInfoDao.getMediList();
+            for (String list : medlist) {
+                comboBox1.getItems().add(list);
+            }
+            AutoCompleteComboBoxListener auto = new AutoCompleteComboBoxListener<>(comboBox1);
+            AddMedcine addMedcine = new AddMedcine();
+            addMedcine.setMedName(comboBox1);
+            addMedcine.setAmount(comboBox2);
+            addMedcine.setDosage (comboBox3);
+            addMedcine.setFrequency (comboBox4);
+            addMedcine.setUseWay(new TextField());
+
+            //初始化价钱
+            Label priceLabel = new Label();
+            MedicineInfo medicineInfo1 = new MedicineInfo();
+            comboBox1.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+                @Override
+
+                public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                    medicineInfo1.setMedName((String) comboBox1.getValue());
+                }
+            });
+
+            comboBox2.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+
+                @Override
+                public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                    double price;
+                    int strAmount = Integer.valueOf (comboBox2.getValue().toString ()) ;
+                    double amountAll = strAmount;
+                    price = MedicineInfoDao.getMedcienPrice(medicineInfo1) * amountAll;
+                    priceLabel.setText(String.valueOf(price));
+                }
+            });
+
+//            comboBox3.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+//                @Override
+//                public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+//                    double price;
+//                    int strAmount = Integer.valueOf (comboBox2.getValue().toString ()) ;
+//                    double amountAll = strAmount;
+//                    price = MedicineInfoDao.getMedcienPrice(medicineInfo1) * amountAll;
+//                    priceLabel.setText(String.valueOf(price));
+//                }
+//            });
+
+            addMedcine.setPrice(priceLabel);
+            medData.add(addMedcine);
+            tabAddMedcine.setItems(medData);
+            medNameCol.setCellValueFactory(new PropertyValueFactory<AddMedcine, ComboBox>("medName"));
+            priceCol.setCellValueFactory(new PropertyValueFactory<AddMedcine, Label>("price"));
+            useWayCol.setCellValueFactory(new PropertyValueFactory<AddMedcine, TextField>("useWay"));
+            amountCol.setCellValueFactory(new PropertyValueFactory<AddMedcine, ComboBox>("amount"));
+            dosageCol.setCellValueFactory (new PropertyValueFactory<AddMedcine,ComboBox> ("dosage"));
+            frequencyCol.setCellValueFactory (new PropertyValueFactory<AddMedcine,ComboBox> ("frequency"));
+            medAllView.setItems(cellData);//将集合的值 存储到tableView里
+
+
+            inHosptalChoose.setSelected(false);
+            addpathis.setVisible(true);
+            addpane.setVisible(false);
+            checkpatient.setVisible(false);
+            menupane.setVisible(false);
+            inHospitalPane.setVisible(false);
+            addSucPane.setVisible(false);
+            perInfoPane.setVisible(false);
+            dutyPane.setVisible(false);
+//            operationPane.setVisible(false);
+            welcomePane.setVisible(false);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.headerTextProperty().set("不存在该卡号患者");
+            alert.show();
+        }
     }
 
     public void checkPat(ActionEvent actionEvent) throws IOException {
@@ -362,7 +611,7 @@ public class MainDocController {
             addSucPane.setVisible(false);
             perInfoPane.setVisible(false);
             dutyPane.setVisible(false);
-            operationPane.setVisible(false);
+//            operationPane.setVisible(false);
             welcomePane.setVisible(false);
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -433,7 +682,6 @@ public class MainDocController {
             medCorDate.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
                 @Override
                 public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-
                 }
 
             });
@@ -446,7 +694,7 @@ public class MainDocController {
             addSucPane.setVisible(false);
             perInfoPane.setVisible(false);
             dutyPane.setVisible(false);
-            operationPane.setVisible(false);
+//            operationPane.setVisible(false);
             welcomePane.setVisible(false);
         }
     }
@@ -466,23 +714,39 @@ public class MainDocController {
         ObservableList<AddMedcine> medData2 = FXCollections.observableArrayList();
         medData2 = tabAddMedcine.getItems();
         for (AddMedcine list : medData2) {
+
             MedicineList medicineList = new MedicineList();
             medicineList.setMedicineUsage(list.getUseWay().getText());
             medicineList.setMedicineAmountl( (Integer.valueOf ((String)list.getAmount().getValue())));
             medicineList.setMedicineDosage ((Integer.valueOf ((String)list.getDosage ().getValue())));
-            medicineList.setMedicineDosage ((Integer.valueOf ((String)list.getFrequency ().getValue())));
+            medicineList.setMedicineFrequency ((Integer.valueOf ((String)list.getFrequency ().getValue())));
             medicineList.setMedicalRecordsNumber(medicalrecordsinfo.getRecordId());
             MedicineInfo medicineInfo = new MedicineInfo();
             medicineInfo.setMedName((String) list.getMedName().getValue());
+
+
+            medicineList.setMedicineNumber(new MedicineInfoDao().getMedicineId(medicineInfo));
+            int status=MedicalRecordDao.checkMedicineList (medicineList);
+            if(status==1){
+                Alert alert=new Alert(Alert.AlertType.INFORMATION);
+                alert.headerTextProperty().setValue("禁止开一个月以外 药量，请检查"+MedicineInfoDao.getMedName (medicineList.getMedicineNumber ())+"的用量");
+                alert.show();
+                return;
+            }
+            else if(status==2){
+                Alert alert=new Alert(Alert.AlertType.INFORMATION);
+                alert.headerTextProperty().setValue("单次药物开放不能超过5次，请检查"+MedicineInfoDao.getMedName (medicineList.getMedicineNumber ())+"的用量");
+                alert.show();
+                return;
+            }
             if(!MedicineInfoDao.medCost((String) list.getMedName().getValue(),((String) list.getAmount().getValue()).charAt(0)-'0')){
                 Alert alert=new Alert(Alert.AlertType.INFORMATION);
                 alert.headerTextProperty().setValue((String) list.getMedName().getValue()+"货存不足");
                 alert.show();
                 return;
             }
-
-            medicineList.setMedicineNumber(new MedicineInfoDao().getMedicineId(medicineInfo));
             medicineLists.add(medicineList);
+
             costAll+=Double.parseDouble(list.getPrice().getText());
         }
 
@@ -521,7 +785,7 @@ public class MainDocController {
         medAllPane.setVisible(false);
         perInfoPane.setVisible(false);
         dutyPane.setVisible(false);
-        operationPane.setVisible(false);
+//        operationPane.setVisible(false);
         welcomePane.setVisible(false);
     }
 
@@ -620,7 +884,7 @@ public class MainDocController {
         medAllPane.setVisible(false);
         perInfoPane.setVisible(false);
         dutyPane.setVisible(false);
-        operationPane.setVisible(false);
+//        operationPane.setVisible(false);
         welcomePane.setVisible(true);
     }
 
@@ -688,6 +952,25 @@ public class MainDocController {
         PatNameCol.setCellValueFactory(new PropertyValueFactory<Medicalrecordsinfo, String>("patName"));
         dateCol.setCellValueFactory(new PropertyValueFactory<Medicalrecordsinfo, String>("createDate"));
         medAllView.setItems(cellData);//将集合的值 存储到tableView里
+    }
+//----------------------------------------------------------------------------------------
+    public void initAppointmentTable(ArrayList<AppointHistory> appointHistories) {
+        medAllView2.getItems().clear();
+        AppointDate.addAll(appointHistories);
+        PatientInfo patientInfo=new PatientInfo ();
+        PatientInfoDao patientInfoDao=new PatientInfoDao ();
+        for(int i=0;i<appointHistories.size ();i++){
+            System.out.println (appointHistories.get (i).getPatId2 ());
+            appointHistories.get(i).setAppointTime (appointHistories.get (i).getAppointDate ()+appointHistories.get (i).getAppointTime ());
+            appointHistories.get (i).setPatName (PatientInfoDao.getPatNameByPatId (appointHistories.get (i).getPatId2 ()));
+        }
+
+//        String time=String.valueOf (appointHistories.)
+//        medRecCol2.setCellValueFactory(new PropertyValueFactory<AppointHistory, Integer>("patId2"));
+        patIdCol2.setCellValueFactory(new PropertyValueFactory<AppointHistory, Integer>("patId2"));
+        PatNameCol2.setCellValueFactory(new PropertyValueFactory<AppointHistory, String>("patName"));
+        dateCol2.setCellValueFactory(new PropertyValueFactory<AppointHistory, String>("appointTime"));
+        medAllView2.setItems(AppointDate);//将集合的值 存储到tableView里
     }
 
     public void continueAdd(ActionEvent actionEvent) {
@@ -843,7 +1126,7 @@ public class MainDocController {
         medAllPane.setVisible(false);
         perInfoPane.setVisible(true);
         dutyPane.setVisible(false);
-        operationPane.setVisible(false);
+//        operationPane.setVisible(false);
         welcomePane.setVisible(false);
         confix.setVisible(false);
         conpwd.setVisible(false);
@@ -980,7 +1263,7 @@ public class MainDocController {
         addSucPane.setVisible(false);
         medAllPane.setVisible(false);
         perInfoPane.setVisible(false);
-        operationPane.setVisible(false);
+//        operationPane.setVisible(false);
         welcomePane.setVisible(false);
     }
 
@@ -1007,36 +1290,36 @@ public class MainDocController {
 
     }
 
-    public void operation(ActionEvent actionEvent) {
-        shijian.setVisible(true);
-        sss.setVisible(true);
-        Name7.clear();
-        Id7.clear();
-        opName7.clear();
-        shijian.setValue(null);
-        sss.getSelectionModel().clearSelection();
-        operationPane.setVisible(true);
-        dutyPane.setVisible(false);
-        addpane.setVisible(false);
-        checkpatient.setVisible(false);
-        menupane.setVisible(false);
-        addpathis.setVisible(false);
-        addSucPane.setVisible(false);
-        medAllPane.setVisible(false);
-        perInfoPane.setVisible(false);
-        welcomePane.setVisible(false);
-    }
+//    public void operation(ActionEvent actionEvent) {
+//        shijian.setVisible(true);
+//        sss.setVisible(true);
+//        Name7.clear();
+//        Id7.clear();
+//        opName7.clear();
+//        shijian.setValue(null);
+//        sss.getSelectionModel().clearSelection();
+////        operationPane.setVisible(true);
+//        dutyPane.setVisible(false);
+//        addpane.setVisible(false);
+//        checkpatient.setVisible(false);
+//        menupane.setVisible(false);
+//        addpathis.setVisible(false);
+//        addSucPane.setVisible(false);
+//        medAllPane.setVisible(false);
+//        perInfoPane.setVisible(false);
+//        welcomePane.setVisible(false);
+//    }
 
-    public void conOpration(ActionEvent actionEvent) {
-        Alert alert=new Alert(Alert.AlertType.INFORMATION);
-        alert.headerTextProperty().setValue("已为"+Name7.getText()+"安排手术成功！");
-        alert.show();
-        Name7.clear();
-        Id7.clear();
-        opName7.clear();
-        welcomePane.setVisible(true);
-        operationPane.setVisible(false);
-    }
+//    public void conOpration(ActionEvent actionEvent) {
+//        Alert alert=new Alert(Alert.AlertType.INFORMATION);
+//        alert.headerTextProperty().setValue("已为"+Name7.getText()+"安排手术成功！");
+//        alert.show();
+//        Name7.clear();
+//        Id7.clear();
+//        opName7.clear();
+//        welcomePane.setVisible(true);
+////        operationPane.setVisible(false);
+//    }
 
     public void Change(ActionEvent actionEvent) throws IOException {
         Stage primaryStage = new Stage();

@@ -12,6 +12,15 @@ public class AppointHistory {
     private int patId2;
     private String appointTime;
     private String appointDate;
+    private String patName;
+
+    public String getPatName() {
+        return patName;
+    }
+
+    public void setPatName(String patName) {
+        this.patName = patName;
+    }
 
     public String getAppointDate() {
         return appointDate;

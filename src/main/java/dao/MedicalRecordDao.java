@@ -2,6 +2,7 @@ package dao;
 
 import entity.Doctorinfo;
 import entity.Medicalrecordsinfo;
+import entity.MedicineList;
 import entity.PatientInfo;
 
 import java.io.IOException;
@@ -20,7 +21,20 @@ public class MedicalRecordDao {
         System.out.println(ans);
         return ans;
     }
+    public static int checkMedicineList(MedicineList medicineList){
+        //0表示剂量合法，1表示天数过多，2表示剂量过多
+        int status=0;
+        System.out.println (medicineList.getMedicineDosage ()+"...."+medicineList.getMedicineFrequency ());
+        System.out.println ("一天用量"+Float.valueOf (medicineList.getMedicineDosage ()*medicineList.getMedicineFrequency ()));
+        Float dayUsage=Float.valueOf (medicineList.getMedicineDosage ()*medicineList.getMedicineFrequency ())/MedicineInfoDao.getMedicineStoage (medicineList.getMedicineNumber ());
 
+        Float day= Float.valueOf (medicineList.getMedicineAmountl ())/dayUsage;
+        System.out.println ("dayUsergae"+dayUsage+"dats"+day);
+        if (day>=30){
+            status=1;
+        }
+        return status;
+    }
     public void insertMedicalRecord(Medicalrecordsinfo medicalrecordsinfo) {
         Connection conn = BaseDao.getconn();
         PreparedStatement ps = null;

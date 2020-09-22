@@ -1,6 +1,7 @@
 package dao;
 
 import entity.MedicineInfo;
+import entity.MedicineList;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,6 +9,50 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class MedicineInfoDao {
+
+    public  static int getMedicineStoage(int meid) {
+        int stoage=0;
+        Connection conn = BaseDao.getconn();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            String sql = "select * from medicineinfo where medNumber=?";
+
+            ps = conn.prepareStatement(sql);
+            ps.setInt (1, meid);
+            System.out.println (ps.toString ());
+            rs = ps.executeQuery();
+            rs.next();
+            stoage=rs.getInt ("medAmount");
+            System.out.println ("medAmount"+stoage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            BaseDao.closeAll(conn, ps, rs);
+        }
+        return stoage;
+    }
+
+    public  static String getMedicineName(int meid) {
+        String name="";
+        Connection conn = BaseDao.getconn();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            String sql = "select * from medicineinfo where medNumber=?";
+            ps = conn.prepareStatement(sql);
+            ps.setInt (1, meid);
+            rs = ps.executeQuery();
+            rs.next();
+            name=rs.getString ("medName");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            BaseDao.closeAll(conn, ps, rs);
+        }
+        return name;
+    }
+
 
     public int getMedicineId(MedicineInfo medicineInfo) {
         int medId = 0;

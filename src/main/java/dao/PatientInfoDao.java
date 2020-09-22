@@ -167,6 +167,29 @@ public class PatientInfoDao {
         return count;
     }
 
+    public static String getPatNameByPatId(int patId){
+        int count = 0;
+        String name="";
+        Connection conn = BaseDao.getconn();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            String query = "select * from patientInfo where patId = ?";
+            ps = conn.prepareStatement(query);
+            ps.setInt(1,patId);
+            rs = ps.executeQuery();
+            while(rs.next())
+                name=rs.getString ("patName");
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            BaseDao.closeAll(conn,ps,rs);
+        }
+        return name;
+    }
+
     //患者登录确认
     public int patLogin(PatientInfo patientinfo){
         int count = 0;
